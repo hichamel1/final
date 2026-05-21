@@ -21,12 +21,16 @@
             --text-color-light: #f8f9fa;
             --text-secondary: #555;
             --transition-speed: 0.3s ease;
-            --footer-bg: #003d80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Cairo', sans-serif;
-            margin: 0;
             background-color: var(--secondary-color);
             color: var(--text-color);
             line-height: 1.6;
@@ -41,9 +45,8 @@
 
         .contact-section {
             background-color: var(--secondary-color);
-            padding: 0rem 1rem;
-            color: var(--text-color);
-            margin: 2rem auto;
+            padding: 2rem 1rem;
+            margin: 1rem auto;
             max-width: 1200px;
         }
 
@@ -281,32 +284,38 @@
                 }
                 const data = await response.text();
                 const container = document.getElementById(elementId);
-                container.innerHTML = data;
+                if (container) {
+                    container.innerHTML = data;
 
-                const scripts = container.querySelectorAll('script');
-                scripts.forEach(oldScript => {
-                    const newScript = document.createElement('script');
-                    Array.from(oldScript.attributes).forEach(attr => {
-                        newScript.setAttribute(attr.name, attr.value);
+                    const scripts = container.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => {
+                            newScript.setAttribute(attr.name, attr.value);
+                        });
+                        newScript.textContent = oldScript.textContent;
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
                     });
-                    newScript.textContent = oldScript.textContent;
-                    oldScript.parentNode.replaceChild(newScript, oldScript);
-                });
-
+                }
                 console.log(`✅ تم تحميل ${filePath} بنجاح`);
             } catch (error) {
                 console.error(`❌ خطأ في تحميل ${filePath}:`, error);
-                document.getElementById(elementId).innerHTML = `
-                    <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
-                        ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
-                    </div>
-                `;
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = `
+                        <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                            ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                        </div>
+                    `;
+                }
             }
         }
 
         // ========== تحميل Navbar و Footer ==========
-        loadHTML('navbar-container', 'navbar.html');
-        loadHTML('footer-container', 'footer.html');
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHTML('navbar-container', 'navbar.html');
+            loadHTML('footer-container', 'footer.html');
+        });
 
         // ========== التعامل مع نموذج الاتصال ==========
         document.addEventListener('DOMContentLoaded', function() {
@@ -322,18 +331,15 @@
                 formMessageContainer.textContent = message;
                 formMessageContainer.style.display = 'block';
 
-                // إخفاء الرسالة بعد 5 ثواني
                 setTimeout(() => {
                     formMessageContainer.style.display = 'none';
                 }, 5000);
             }
 
-            // دالة إخفاء الرسالة
             function hideFormMessage() {
                 formMessageContainer.style.display = 'none';
             }
 
-            // دالة تعطيل/تفعيل النموذج
             function setFormLoading(isLoading) {
                 const inputs = contactForm.querySelectorAll('input, textarea, button');
                 inputs.forEach(input => {
@@ -349,24 +355,20 @@
                 }
             }
 
-            // دالة التحقق من صحة البريد الإلكتروني
             function isValidEmail(email) {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailRegex.test(email);
             }
 
-            // معالجة تقديم النموذج
             contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 hideFormMessage();
 
-                // جمع البيانات
                 const name = document.getElementById('name').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const phone = document.getElementById('phone').value.trim();
                 const message = document.getElementById('message').value.trim();
 
-                // التحقق من صحة البيانات
                 if (!name || !email || !message) {
                     showFormMessage('error', '⚠️ المرجو ملء جميع الحقول الإلزامية (الاسم، البريد الإلكتروني، الرسالة).');
                     return;
@@ -382,51 +384,14 @@
                     return;
                 }
 
-                // تفعيل حالة التحميل
                 setFormLoading(true);
 
                 try {
-                    // محاكاة إرسال البيانات (تقدر تبدّلها بـ fetch حقيقي)
-                    // ========== للاستخدام مع سيرفر حقيقي، علّق على المحاكاة وفعّل fetch ==========
-
-                    // ---- محاكاة الإرسال (احذف هذا الجزء عند الاتصال بسيرفر حقيقي) ----
+                    // محاكاة الإرسال
                     await new Promise((resolve) => setTimeout(resolve, 1500));
-
-                    // محاكاة نجاح
-                    const simulatedSuccess = true; // بدّل لـ false باش تحاكي فشل
-
-                    if (simulatedSuccess) {
-                        showFormMessage('success', '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-                        contactForm.reset();
-                    } else {
-                        throw new Error('فشل في إرسال الرسالة. المرجو المحاولة لاحقاً.');
-                    }
-                    // ---- نهاية المحاكاة ----
-
-                    // ---- للاستخدام مع سيرفر حقيقي (فعّل هذا الجزء) ----
-                    /*
-                    const response = await fetch('your-server-endpoint.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: name,
-                            email: email,
-                            phone: phone,
-                            message: message
-                        })
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok && result.success) {
-                        showFormMessage('success', '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-                        contactForm.reset();
-                    } else {
-                        throw new Error(result.message || 'فشل في إرسال الرسالة. المرجو المحاولة لاحقاً.');
-                    }
-                    */
+                    
+                    showFormMessage('success', '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+                    contactForm.reset();
 
                 } catch (error) {
                     showFormMessage('error', `❌ ${error.message || 'حدث خطأ غير متوقع. المرجو المحاولة لاحقاً.'}`);

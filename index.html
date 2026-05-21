@@ -414,65 +414,6 @@
         line-height: 1.5;
     }
 
-    /* ========== STYLES DU FOOTER ========== */
-    footer {
-        background-color: var(--footer-bg);
-        color: var(--footer-text);
-        padding: 30px 20px;
-        text-align: center;
-        margin-top: auto;
-    }
-
-    .footer-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-    }
-
-    .footer-links a {
-        color: var(--footer-text);
-        text-decoration: none;
-        font-size: 1rem;
-        transition: all var(--transition-speed) ease;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-        opacity: 0.8;
-    }
-
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .social-links a {
-        color: var(--footer-text);
-        font-size: 1.5rem;
-        transition: all var(--transition-speed) ease;
-    }
-
-    .social-links a:hover {
-        transform: translateY(-3px) scale(1.1);
-        opacity: 0.8;
-    }
-
-    .copyright {
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-
     /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 768px) {
         .hero {
@@ -510,22 +451,6 @@
         .stories-grid {
             grid-template-columns: 1fr;
         }
-
-        .footer-links {
-            gap: 15px;
-        }
-
-        .footer-links a {
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            gap: 15px;
-        }
-
-        .social-links a {
-            font-size: 1.3rem;
-        }
     }
 
     @media (min-width: 768px) {
@@ -559,7 +484,7 @@
             <div class="hero-content">
                 <h1>مرحباً بكم في النصر الرياضي المرنيسي</h1>
                 <p>انضم إلى عائلتنا الرياضية واستفد من برامجنا التدريبية المتخصصة وشارك في البطولات المحلية والدولية</p>
-                <form class="admin-login-form" action="/REJOINT.html" method="POST">
+                <form class="admin-login-form" action="REJOINT.html" method="POST">
                     <button class="action_btn">
                         <i class=" fas fa-user-plus"></i>
                         سجل الآن
@@ -606,7 +531,7 @@
                         <h3>إعادة مشاهدة المباراة | النصر الرياضي ضد </h3>
                         <p class="story-meta">مباراة الدوري </p>
                     </a>
-                    <a href="/produit.html" class="story-item">
+                    <a href="produit.html" class="story-item">
                         <div class="story-image">
                             <img src="./accet/produit.jpg" alt="تشكيلة الفريق">
                         </div>
@@ -619,28 +544,9 @@
         </section>
     </main>
 
-    <!-- ========== FOOTER مباشر (ما يحتاجش تحميل) ========== -->
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">الرئيسية</a>
-            <a href="structure.html">عن النادي</a>
-            <a href="programs.html">البرامج</a>
-            <a href="contact.html">اتصل بنا</a>
-            <a href="privacy.html">سياسة الخصوصية</a>
-        </div>
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
 
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- ========== JAVASCRIPT لتحميل النافبار فقط ========== -->
     <script>
     // دالة لتحميل ملفات HTML
     async function loadHTML(elementId, filePath) {
@@ -655,7 +561,6 @@
             if (container) {
                 container.innerHTML = data;
                 
-                // ننفذ أي سكريبتات موجودة في المحتوى المحمّل
                 const scripts = container.querySelectorAll('script');
                 scripts.forEach(oldScript => {
                     const newScript = document.createElement('script');
@@ -680,9 +585,10 @@
         }
     }
 
-    // نحمّل النافبار فقط (الفوتـر مكتوب مباشرة)
+    // تحميل النافبار والفوتر
     document.addEventListener('DOMContentLoaded', function() {
         loadHTML('navbar-container', 'navbar.html');
+        loadHTML('footer-container', 'footer.html');
     });
     </script>
 
