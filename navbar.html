@@ -1,67 +1,56 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!-- navbar.html -->
+<header>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="./accet/logo.png" alt="شعار النادي" loading="lazy">
+            <div class="logo">
+                <a href="index.html">النصر الرياضي المرنيسي</a>
+            </div>
+        </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="موقع النصر الرياضي المرنيسي - التسجيل في النادي الرياضي">
-    <link rel="icon" href="./accet/logo.png" type="image/png">
+        <ul class="links">
+            <li><a class="b_index" href="index.html">الرئيسية</a></li>
+            <li><a href="Objectifs.html">الأهداف</a></li>
+            <li><a href="cup.html">الدوريات</a></li>
+            <li><a href="news.html">الأخبار</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+        </ul>
+        
+        <form class="admin-login-form" action="REJOINT.html" method="POST">
+            <button class="action_btn" type="submit">تسجيل</button>
+        </form>
 
-    <!-- تحسين تحميل الخطوط والمكتبات -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
+        <button class="toggle_btn" aria-label="قائمة التنقل" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;700&family=Tajawal:wght@400;700&display=swap"
-        rel="stylesheet">
+        <ul class="dropdown_menu">
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="news.html">الأخبار</a></li>
+            <li><a href="Objectifs.htm">الأهداف</a></li>
+            <li><a href="cup.html">الدوريات</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
+            <li>
+                <form class="admin-login-form" action="REJOINT.html" method="POST">
+                    <button class="action_btns" type="submit">تسجيل</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <title>النصر الرياضي المرنيسي - التسجيل</title>
-
-    <style>
+<style>
     :root {
-        /* --- Blue Color Palette --- */
         --primary-color: #0056b3;
-        /* Darker Blue for primary elements, cards */
         --secondary-color: #eef5ff;
-        /* Very Light Blue for section backgrounds */
         --accent-color: #007bff;
-        /* Bright Blue for accents, icons, borders */
         --light-color: #ffffff;
-        /* White for text on dark backgrounds / contrast */
-        --dark-blue-hover: #004085;
-        /* Darker blue for hover states */
-
-        /* --- Text Colors --- */
+        --dark-color: #004085;
         --text-color: #333;
-        /* Dark Gray for main text */
         --text-color-light: #f8f9fa;
-        /* Light text for dark backgrounds */
-        --text-secondary: #555;
-        /* Medium Gray for subtitles */
-
-        /* --- Other Colors --- */
-        --success-color: #28a745;
-        /* Green for success messages/buttons */
-        --success-hover-color: #218838;
-        /* Darker green for hover */
-        --danger-color: #dc3545;
-        /* Red for errors */
-
-        /* --- Transitions --- */
+        --text-secondary: #bbdefb;
         --transition-speed: 0.3s ease;
     }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Tajawal", "Kufam", sans-serif;
-    }
-
 
     /* تحسين شريط التنقل */
     header {
@@ -115,21 +104,14 @@
     }
 
     .navbar .links {
-        margin-left: 25px;
-        /* الأصلي */
         display: flex;
         gap: 25px;
-        /* الأصلي */
         margin-right: auto;
-        /* الأصلي */
         list-style: none;
-        /* لإزالة ::marker من ul إذا كانت تظهر */
     }
 
     .navbar .links li {
-        /* إذا كانت الروابط داخل li */
         list-style: none;
-        /* لإزالة ::marker */
     }
 
     .navbar .links a {
@@ -216,7 +198,6 @@
         scale: 0.98;
     }
 
-
     .toggle_btn {
         color: var(--text-color-light);
         font-size: 1.5rem;
@@ -245,25 +226,18 @@
         overflow: hidden;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         transform-origin: top right;
-        /* الأصلي */
         transform: scale(0.9);
-        /* الأصلي */
         opacity: 0;
-        /* الأصلي */
         transition: all var(--transition-speed) ease;
-        /* الأصلي */
         z-index: 999;
         display: none;
         list-style: none;
-        /* لإزالة ::marker من ul */
     }
 
     .dropdown_menu.open {
         display: block;
         transform: scale(1);
-        /* الأصلي */
         opacity: 1;
-        /* الأصلي */
     }
 
     .dropdown_menu li {
@@ -273,7 +247,6 @@
         justify-content: center;
         transition: background-color var(--transition-speed) ease;
         list-style: none;
-        /* تأكيد إزالة ::marker من li */
     }
 
     .dropdown_menu li:hover {
@@ -293,7 +266,6 @@
         justify-content: center;
         margin: 10px auto;
     }
-
 
     /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 992px) {
@@ -315,96 +287,57 @@
     @media (max-width: 576px) {
         .dropdown_menu {
             right: 10px;
-            /* الأصلي */
             left: 10px;
-            /* الأصلي */
             width: auto;
-            /* الأصلي */
         }
 
         .navbar .logo a {
             font-size: 1.1rem;
         }
     }
-    </style>
-</head>
+</style>
 
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo-container">
-                <img src="/accet/logo.png" alt="شعار النادي" loading="lazy">
-                <div class="logo">
-                    <a href="/index.html">النصر الرياضي المرنيسي</a>
-                </div>
-            </div>
+<script>
+    // سكريبت النافبار
+    (function() {
+        const toggleBtn = document.querySelector('.toggle_btn');
+        const toggleBtnIcon = document.querySelector('.toggle_btn i');
+        const dropDownMenu = document.querySelector('.dropdown_menu');
 
-            <ul class="links">
-                <!-- الروابط كانت مباشرة وليست داخل li في الكود الأصلي، إذا كانت داخل li يجب تعديل CSS -->
-                <a class="b_index" href="/index.html">الرئيسية</a>
-                <a href="/Objectifs.html">الأهداف</a>
-                <a href="/cup.html">الدوريات</a>
-                <a href="/news.html">الأخبار</a>
-                <a href="/contact.html">اتصل بنا</a>
-            </ul>
-            <form class="admin-login-form" action="/admin/home.html" method="POST">
-                <button class="action_btn" type="submit">تسجيل</button>
-            </form>
+        if (toggleBtn && dropDownMenu) {
+            toggleBtn.onclick = function(event) {
+                event.stopPropagation();
+                const isOpen = dropDownMenu.classList.toggle('open');
+                if (toggleBtn) {
+                    toggleBtn.setAttribute('aria-expanded', isOpen.toString());
+                }
+                if (toggleBtnIcon) {
+                    if (isOpen) {
+                        toggleBtnIcon.classList.remove('fa-bars');
+                        toggleBtnIcon.classList.add('fa-times');
+                    } else {
+                        toggleBtnIcon.classList.remove('fa-times');
+                        toggleBtnIcon.classList.add('fa-bars');
+                    }
+                }
+            }
 
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', function(event) {
+                if (dropDownMenu.classList.contains('open') &&
+                    !toggleBtn.contains(event.target) &&
+                    !dropDownMenu.contains(event.target)) {
 
-            <button class="toggle_btn" aria-label="قائمة التنقل" aria-expanded="false">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <ul class="dropdown_menu">
-                <li><a href="/index.html">الرئيسيhة</a></li>
-                <li><a href="/news.html">الأخبار</a></li>
-                <li><a href="/Objectifs.html">الأهداف</a></li>
-                <li><a href="/cup.html">الدوريات</a></li>
-                <li><a href="/contact.html">اتصل بنا</a></li>
-                <li>
-                    <form class="admin-login-form" action="/admin/home.html" method="POST">
-                        <button class="action_btns" type="submit">تسجيل</button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <script>
-    const toggleBtn = document.querySelector('.toggle_btn');
-    const toggleBtnIcon = document.querySelector('.toggle_btn i'); // للتحكم في الأيقونة
-    const dropDownMenu = document.querySelector('.dropdown_menu');
-
-    toggleBtn.onclick = function(event) {
-        event.stopPropagation(); // منع انتشار الحدث لإغلاق القائمة فورًا عند الفتح
-        const isOpen = dropDownMenu.classList.toggle('open');
-        toggleBtn.setAttribute('aria-expanded', isOpen.toString());
-        // تغيير الأيقونة
-        if (isOpen) {
-            toggleBtnIcon.classList.remove('fa-bars');
-            toggleBtnIcon.classList.add('fa-times');
-        } else {
-            toggleBtnIcon.classList.remove('fa-times');
-            toggleBtnIcon.classList.add('fa-bars');
+                    dropDownMenu.classList.remove('open');
+                    if (toggleBtn) {
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+                    if (toggleBtnIcon) {
+                        toggleBtnIcon.classList.remove('fa-times');
+                        toggleBtnIcon.classList.add('fa-bars');
+                    }
+                }
+            });
         }
-    }
-
-    // إغلاق القائمة عند النقر خارجها
-    document.addEventListener('click', function(event) {
-        // التحقق مما إذا كانت القائمة مفتوحة والضغط لم يكن على زر التبديل أو داخل القائمة
-        if (dropDownMenu.classList.contains('open') &&
-            !toggleBtn.contains(event.target) &&
-            !dropDownMenu.contains(event.target)) {
-
-            dropDownMenu.classList.remove('open');
-            toggleBtn.setAttribute('aria-expanded', 'false');
-            // إعادة الأيقونة إلى الحالة الافتراضية
-            toggleBtnIcon.classList.remove('fa-times');
-            toggleBtnIcon.classList.add('fa-bars');
-        }
-    });
-    </script>
-</body>
-
-</html>
+    })();
+</script>
