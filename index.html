@@ -20,6 +20,8 @@
         --text-color: #ffffff;
         --text-secondary: #bbdefb;
         --transition-speed: 0.3s;
+        --footer-bg: rgb(17, 80, 147);
+        --footer-text: #f8f9fa;
     }
 
     * {
@@ -33,6 +35,13 @@
         background-color: #f5f5f5;
         color: #333;
         line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        flex: 1;
     }
 
     /* قسم التحقق */
@@ -405,6 +414,65 @@
         line-height: 1.5;
     }
 
+    /* ========== STYLES DU FOOTER ========== */
+    footer {
+        background-color: var(--footer-bg);
+        color: var(--footer-text);
+        padding: 30px 20px;
+        text-align: center;
+        margin-top: auto;
+    }
+
+    .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .footer-links a {
+        color: var(--footer-text);
+        text-decoration: none;
+        font-size: 1rem;
+        transition: all var(--transition-speed) ease;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .social-links a {
+        color: var(--footer-text);
+        font-size: 1.5rem;
+        transition: all var(--transition-speed) ease;
+    }
+
+    .social-links a:hover {
+        transform: translateY(-3px) scale(1.1);
+        opacity: 0.8;
+    }
+
+    .copyright {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
     /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 768px) {
         .hero {
@@ -441,6 +509,22 @@
 
         .stories-grid {
             grid-template-columns: 1fr;
+        }
+
+        .footer-links {
+            gap: 15px;
+        }
+
+        .footer-links a {
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            gap: 15px;
+        }
+
+        .social-links a {
+            font-size: 1.3rem;
         }
     }
 
@@ -535,12 +619,30 @@
         </section>
     </main>
 
-    <!-- ========== FOOTER CONTAINER ========== -->
-    <div id="footer-container"></div>
+    <!-- ========== FOOTER مباشر (ما يحتاجش تحميل) ========== -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="structure.html">عن النادي</a>
+            <a href="programs.html">البرامج</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="privacy.html">سياسة الخصوصية</a>
+        </div>
 
-    <!-- ========== JAVASCRIPT لتحميل الأجزاء ========== -->
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT لتحميل النافبار فقط ========== -->
     <script>
-    // دالة لتحميل ملفات HTML وتنفيذ السكريبتات اللي فيهم
+    // دالة لتحميل ملفات HTML
     async function loadHTML(elementId, filePath) {
         try {
             const response = await fetch(filePath);
@@ -549,39 +651,38 @@
             }
             const data = await response.text();
 
-            // نحط المحتوى في الحاوية
             const container = document.getElementById(elementId);
-            container.innerHTML = data;
-
-            // ننفذ أي سكريبتات موجودة في المحتوى المحمّل
-            const scripts = container.querySelectorAll('script');
-            scripts.forEach(oldScript => {
-                const newScript = document.createElement('script');
-                // ننسخ كل الصفات من السكريبت القديم للجديد
-                Array.from(oldScript.attributes).forEach(attr => {
-                    newScript.setAttribute(attr.name, attr.value);
+            if (container) {
+                container.innerHTML = data;
+                
+                // ننفذ أي سكريبتات موجودة في المحتوى المحمّل
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
-                // ننسخ المحتوى
-                newScript.textContent = oldScript.textContent;
-                // نبدل القديم بالجديد باش يتنفذ
-                oldScript.parentNode.replaceChild(newScript, oldScript);
-            });
-
+            }
             console.log(`✅ تم تحميل ${filePath} بنجاح`);
         } catch (error) {
             console.error(`❌ خطأ في تحميل ${filePath}:`, error);
-            document.getElementById(elementId).innerHTML = `
-                <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
-                    ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
-                </div>
-            `;
+            const container = document.getElementById(elementId);
+            if (container) {
+                container.innerHTML = `
+                    <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                        ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                    </div>
+                `;
+            }
         }
     }
 
-    // نحمّل Navbar و Footer ملّي الصفحة تستنى تشارجي
+    // نحمّل النافبار فقط (الفوتـر مكتوب مباشرة)
     document.addEventListener('DOMContentLoaded', function() {
         loadHTML('navbar-container', 'navbar.html');
-        loadHTML('footer-container', 'footer.html');
     });
     </script>
 
