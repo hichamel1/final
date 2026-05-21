@@ -4,18 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="./assets/logo.png">
+    <link rel="icon" href="./accet/logo.png">
     <title>الأهداف - نادي النصر الرياضي المرنيسي</title>
     <style>
         :root {
             --primary-color: #1a237e;
             --accent-color: #64b5f6;
             --text-color-dark: #333;
-            --text-color-light: #555;
             --bg-light: #fff;
             --bg-section-gradient-start: #e8eaf6;
             --bg-section-gradient-mid1: #c5cae9;
@@ -23,8 +20,6 @@
             --bg-section-gradient-end: #7986cb;
             --card-shadow: rgba(0, 0, 0, 0.05);
             --card-shadow-hover: rgba(0, 0, 0, 0.1);
-            --footer-bg: rgb(17, 80, 147);
-            --footer-text: #f8f9fa;
         }
 
         * {
@@ -35,8 +30,6 @@
 
         body {
             font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 0;
             color: var(--text-color-dark);
             line-height: 1.6;
             background-color: #f0f2f5;
@@ -49,13 +42,6 @@
             flex: 1;
         }
 
-        .b_Objectifs {
-            background-color: var(--primary-color);
-            color: white !important;
-            border-radius: 8px;
-            padding: 8px 15px;
-        }
-
         .objectifs-section {
             padding: 80px 20px;
             background: linear-gradient(135deg,
@@ -65,19 +51,12 @@
                     var(--bg-section-gradient-end) 100%);
             background-size: 200% 200%;
             animation: gradientBG 12s ease infinite;
-            overflow-x: hidden;
         }
 
         @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .objectifs-container {
@@ -88,7 +67,6 @@
         .section-title {
             text-align: center;
             margin-bottom: 60px;
-            position: relative;
         }
 
         .section-title h4 {
@@ -117,37 +95,17 @@
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 6px 18px var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease-out, transform 0.5s ease-out;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 5px solid var(--accent-color);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             text-align: right;
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .objectif-card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .objectif-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-8px);
             box-shadow: 0 12px 28px var(--card-shadow-hover);
-        }
-
-        .objectif-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            width: 60px;
-            height: 60px;
-            background-color: #e8eaf6;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .objectif-number {
@@ -156,7 +114,6 @@
             color: var(--accent-color);
             margin-bottom: 15px;
             line-height: 1;
-            align-self: flex-start;
         }
 
         .objectif-text {
@@ -165,121 +122,10 @@
             line-height: 1.7;
         }
 
-        /* ========== STYLES DU FOOTER ========== */
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 30px 20px;
-            text-align: center;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: var(--footer-text);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-            opacity: 0.8;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-links a {
-            color: var(--footer-text);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px) scale(1.1);
-            opacity: 0.8;
-        }
-
-        .copyright {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .objectifs-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-            .section-title h4 {
-                font-size: 2.2rem;
-            }
-        }
-
         @media (max-width: 768px) {
-            .objectifs-section {
-                padding: 60px 15px;
-            }
-            .objectifs-grid {
-                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            }
-            .objectif-card {
-                padding: 25px;
-            }
-            .objectif-number {
-                font-size: 2.2rem;
-            }
-            .objectif-text {
-                font-size: 1rem;
-            }
-            .section-title h4 {
-                font-size: 2rem;
-            }
-            .footer-links {
-                gap: 15px;
-            }
-            .footer-links a {
-                font-size: 0.9rem;
-            }
-            .social-links {
-                gap: 15px;
-            }
-            .social-links a {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .section-title h4 {
-                font-size: 1.8rem;
-            }
-            .objectifs-grid {
-                grid-template-columns: 1fr;
-            }
-            .objectif-card {
-                padding: 20px;
-            }
-            .objectif-number {
-                font-size: 2rem;
-            }
+            .objectifs-section { padding: 60px 15px; }
+            .section-title h4 { font-size: 2rem; }
+            .objectifs-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -297,73 +143,22 @@
                     <div class="title-decoration"></div>
                 </div>
                 <div class="objectifs-grid">
-                    <!-- Card 1 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">1</div>
-                        <div class="objectif-text">توفير بيئة آمنة وصحية للشباب لممارسة الرياضة.</div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">2</div>
-                        <div class="objectif-text">تنمية المواهب الرياضية من خلال منهجيات التدريب المتقدمة.</div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">3</div>
-                        <div class="objectif-text">التثقيف من خلال القيم الرياضية وتوسيع العلامة التجارية للنصر.</div>
-                    </div>
-                    <!-- Card 4 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">4</div>
-                        <div class="objectif-text">تمكين تجارب الحياة المتغيرة إقليمياً، جهوياً ووطنياً.</div>
-                    </div>
-                    <!-- Card 5 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">5</div>
-                        <div class="objectif-text">اكتشاف أفضل المواهب لنادي النصر الرياضي المرنيسي والمنتخب المغربي.</div>
-                    </div>
-                    <!-- Card 6 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">6</div>
-                        <div class="objectif-text">المساهمة بشكل فعال في تأطير الرياضيين بالمنطقة.</div>
-                    </div>
-                    <!-- Card 7 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">7</div>
-                        <div class="objectif-text">تنظيم مسابقات رياضية في كل فروع الجمعية النصر الرياضي المرنيسي.</div>
-                    </div>
-                    <!-- Card 8 -->
-                    <div class="objectif-card">
-                        <div class="objectif-number">8</div>
-                        <div class="objectif-text">عقد شراكات هدفها المساعدة على تنمية الرياضة بالمنطقة.</div>
-                    </div>
+                    <div class="objectif-card"><div class="objectif-number">1</div><div class="objectif-text">توفير بيئة آمنة وصحية للشباب لممارسة الرياضة.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">2</div><div class="objectif-text">تنمية المواهب الرياضية من خلال منهجيات التدريب المتقدمة.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">3</div><div class="objectif-text">التثقيف من خلال القيم الرياضية وتوسيع العلامة التجارية للنصر.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">4</div><div class="objectif-text">تمكين تجارب الحياة المتغيرة إقليمياً، جهوياً ووطنياً.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">5</div><div class="objectif-text">اكتشاف أفضل المواهب لنادي النصر الرياضي المرنيسي والمنتخب المغربي.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">6</div><div class="objectif-text">المساهمة بشكل فعال في تأطير الرياضيين بالمنطقة.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">7</div><div class="objectif-text">تنظيم مسابقات رياضية في كل فروع الجمعية النصر الرياضي المرنيسي.</div></div>
+                    <div class="objectif-card"><div class="objectif-number">8</div><div class="objectif-text">عقد شراكات هدفها المساعدة على تنمية الرياضة بالمنطقة.</div></div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ========== FOOTER مباشر (ما يحتاجش تحميل) ========== -->
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">الرئيسية</a>
-            <a href="structure.html">عن النادي</a>
-            <a href="programs.html">البرامج</a>
-            <a href="contact.html">اتصل بنا</a>
-            <a href="privacy.html">سياسة الخصوصية</a>
-        </div>
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
 
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <!-- ========== JAVASCRIPT لتحميل النافبار فقط ========== -->
     <script>
         // ========== دالة تحميل ملفات HTML ==========
         async function loadHTML(elementId, filePath) {
@@ -376,7 +171,6 @@
                 const container = document.getElementById(elementId);
                 if (container) {
                     container.innerHTML = data;
-
                     // تنفيذ السكريبتات الموجودة في المحتوى المحمّل
                     const scripts = container.querySelectorAll('script');
                     scripts.forEach(oldScript => {
@@ -402,37 +196,27 @@
             }
         }
 
-        // ========== تحميل Navbar فقط عند جاهزية الصفحة ==========
+        // ========== تحميل Navbar و Footer ==========
         document.addEventListener('DOMContentLoaded', function() {
             loadHTML('navbar-container', 'navbar.html');
+            loadHTML('footer-container', 'footer.html');
         });
 
         // ========== أنيميشن ظهور الكاردات ==========
         document.addEventListener('DOMContentLoaded', () => {
             const animatedElements = document.querySelectorAll('.objectif-card');
-
             if (!('IntersectionObserver' in window)) {
                 animatedElements.forEach(el => el.classList.add('is-visible'));
                 return;
             }
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-
-            const observerCallback = (entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
                 });
-            };
-
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
-
+            }, { threshold: 0.1 });
             animatedElements.forEach((el, index) => {
                 el.style.transitionDelay = `${index * 100}ms`;
                 observer.observe(el);
