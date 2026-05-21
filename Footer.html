@@ -7,7 +7,6 @@
     <meta name="description" content="موقع النصر الرياضي المرنيسي - التسجيل في النادي الرياضي">
     <link rel="icon" href="./accet/logo.png" type="image/png">
 
-    <!-- تحسين تحميل الخطوط والمكتبات -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
         onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
@@ -23,35 +22,17 @@
 
     <style>
     :root {
-        /* --- Blue Color Palette --- */
         --primary-color: rgb(17, 80, 147);
-        /* Darker Blue for primary elements, cards */
         --secondary-color: #eef5ff;
-        /* Very Light Blue for section backgrounds */
         --accent-color: #007bff;
-        /* Bright Blue for accents, icons, borders */
         --light-color: #ffffff;
-        /* White for text on dark backgrounds / contrast */
         --dark-blue-hover: #004085;
-        /* Darker blue for hover states */
-
-        /* --- Text Colors --- */
         --text-color: #333;
-        /* Dark Gray for main text */
         --text-color-light: #f8f9fa;
-        /* Light text for dark backgrounds */
         --text-secondary: #555;
-        /* Medium Gray for subtitles */
-
-        /* --- Other Colors --- */
         --success-color: #28a745;
-        /* Green for success messages/buttons */
         --success-hover-color: #218838;
-        /* Darker green for hover */
         --danger-color: #dc3545;
-        /* Red for errors */
-
-        /* --- Transitions --- */
         --transition-speed: 0.3s ease;
     }
 
@@ -62,21 +43,24 @@
         font-family: "Tajawal", "Kufam", sans-serif;
     }
 
-    /* الحل الأساسي - جعل body يأخذ كامل ارتفاع الشاشة */
+    /* الحل باش الفوتر يبقى تحت */
     body {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
     }
 
-    /* فوتر الصفحة */
+    main {
+        flex: 1;
+    }
+
+    /* الفوتر */
     footer {
         background-color: var(--primary-color);
         color: var(--text-color-light);
         padding: 30px 20px;
         text-align: center;
-        margin-top: auto;  /* هذا يدفع الفوتر للأسفل */
-
+        margin-top: auto;
     }
 
     .footer-content {
@@ -90,7 +74,7 @@
     .footer-links {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 25px;
         flex-wrap: wrap;
         margin-bottom: 20px;
     }
@@ -98,44 +82,40 @@
     .footer-links a {
         color: var(--text-color-light);
         text-decoration: none;
-        transition: color var(--transition-speed) ease;
+        font-size: 1rem;
+        transition: all var(--transition-speed) ease;
     }
 
     .footer-links a:hover {
-        color: var(--text-color-light);
         text-decoration: underline;
+        opacity: 0.8;
     }
 
     .social-links {
         display: flex;
         justify-content: center;
-        gap: 15px;
+        gap: 20px;
     }
 
     .social-links a {
         color: var(--text-color-light);
         font-size: 1.5rem;
-        transition: transform var(--transition-speed) ease;
+        transition: all var(--transition-speed) ease;
     }
 
     .social-links a:hover {
         transform: translateY(-3px) scale(1.1);
+        opacity: 0.8;
     }
 
     .copyright {
         font-size: 0.9rem;
-        color: var(--text-color-light);
+        opacity: 0.8;
     }
 
-    /* تأثيرات الحركة */
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     @keyframes fadeInUp {
@@ -143,7 +123,6 @@
             opacity: 0;
             transform: translateY(20px);
         }
-
         to {
             opacity: 1;
             transform: translateY(0);
@@ -155,7 +134,6 @@
             opacity: 0;
             transform: translate(-50%, -60%);
         }
-
         to {
             opacity: 1;
             transform: translate(-50%, -50%);
@@ -165,19 +143,22 @@
 </head>
 
 <body>
-    <!-- يمكنك إضافة محتوى الصفحة الرئيسي هنا -->
-    <main style="flex: 1; text-align: center; padding: 50px 20px;">
+
+    <!-- المحتوى الرئيسي ديال الصفحة -->
+    <main>
+        <!-- هنا تحط المحتوى ديال صفحتك -->
         <h1>مرحباً بكم في موقع النصر الرياضي المرنيسي</h1>
-        <p>هذا هو المحتوى الرئيسي للصفحة</p>
+        <!-- باقي المحتوى... -->
     </main>
 
+    <!-- ========== الفوتر ========== -->
     <footer>
         <div class="footer-links">
-            <a href="/index.html">الرئيسية</a>
-            <a href="/Pages_footer/structure.html">عن النادي</a>
-            <a href="./programs.html">البرامج</a>
-            <a href="./contact.html">اتصل بنا</a>
-            <a href="/Pages_footer/privacy.html">سياسة الخصوصية</a>
+            <a href="index.html">الرئيسية</a>
+            <a href="structure.html">عن النادي</a>
+            <a href="programs.html">البرامج</a>
+            <a href="contact.html">اتصل بنا</a>
+            <a href="privacy.html">سياسة الخصوصية</a>
         </div>
 
         <div class="footer-content">
@@ -187,7 +168,6 @@
                 <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
                 <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
             </div>
-
             <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
