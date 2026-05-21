@@ -62,13 +62,20 @@
         font-family: "Tajawal", "Kufam", sans-serif;
     }
 
+    /* الحل الأساسي - جعل body يأخذ كامل ارتفاع الشاشة */
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
     /* فوتر الصفحة */
     footer {
         background-color: var(--primary-color);
         color: var(--text-color-light);
         padding: 30px 20px;
         text-align: center;
-        margin-top: auto;
+        margin-top: auto;  /* هذا يدفع الفوتر للأسفل */
 
     }
 
@@ -90,11 +97,13 @@
 
     .footer-links a {
         color: var(--text-color-light);
+        text-decoration: none;
         transition: color var(--transition-speed) ease;
     }
 
     .footer-links a:hover {
         color: var(--text-color-light);
+        text-decoration: underline;
     }
 
     .social-links {
@@ -156,10 +165,13 @@
 </head>
 
 <body>
+    <!-- يمكنك إضافة محتوى الصفحة الرئيسي هنا -->
+    <main style="flex: 1; text-align: center; padding: 50px 20px;">
+        <h1>مرحباً بكم في موقع النصر الرياضي المرنيسي</h1>
+        <p>هذا هو المحتوى الرئيسي للصفحة</p>
+    </main>
 
     <footer>
-
-
         <div class="footer-links">
             <a href="/index.html">الرئيسية</a>
             <a href="/Pages_footer/structure.html">عن النادي</a>
@@ -168,18 +180,15 @@
             <a href="/Pages_footer/privacy.html">سياسة الخصوصية</a>
         </div>
 
-
-
         <div class="footer-content">
-
             <div class="social-links">
                 <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="تويتر"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
                 <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
                 <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
             </div>
 
-            <p class="copyright">©  2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
+            <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 </body>
