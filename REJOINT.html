@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./accet/logo.png">
+    <title>A.V.S.M - التسجيل</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 20px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    section {
+        margin-bottom: 30px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .FROM-TITLE {
+        color: #0056b3;
+        text-align: center;
+        margin-bottom: 25px;
+        border-bottom: 2px solid #0056b3;
+        padding-bottom: 10px;
+    }
+
+    .condiction h2 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+        color: #555;
+    }
+
+    .formrejoint {
+        background-color: #fdfdfd;
+    }
+
+    .main-user-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .user-input-box {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .user-input-box label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .user-input-box input[type="text"],
+    .user-input-box input[type="tel"],
+    .user-input-box input[type="email"],
+    .user-input-box input[type="date"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .user-input-box input:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+    }
+
+    .inputfr input {
+        direction: ltr;
+        text-align: left;
+    }
+
+    .error,
+    .success-msg {
+        font-size: 0.9em;
+        margin-top: 5px;
+        padding: 5px;
+        border-radius: 3px;
+    }
+
+    .error {
+        color: #d9534f;
+    }
+
+    .success-msg {
+        color: #5cb85c;
+    }
+
+    .success {
+        color: #28a745;
+    }
+
+    .entre {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background-color 0.3s ease;
+        display: block;
+        width: fit-content;
+        margin: 20px auto 0;
+    }
+
+    .entre:hover {
+        background-color: #0056b3;
+    }
+
+    .php-message {
+        text-align: center;
+        padding: 10px;
+        margin-top: 15px;
+        border-radius: 4px;
+    }
+
+    .php-message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .php-message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .download-buttons-container {
+        text-align: center;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+    }
+
+    .download-btn {
+        display: inline-block;
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 5px;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+    }
+
+    .download-btn i {
+        margin-left: 8px;
+        /* Adjusted for RTL, icon before text */
+    }
+
+    .download-btn:hover {
+        background-color: #218838;
+        color: white;
+    }
+
+    .download-btn-consent {
+        background-color: #ffc107;
+        color: #212529;
+    }
+
+    .download-btn-consent:hover {
+        background-color: #e0a800;
+        color: #212529;
+    }
+
+    input[dir="ltr"] {
+        direction: ltr;
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <?php 
+    // إذا كان ملف navbar.php موجودًا
+    if (file_exists("navbar.php")) {
+        include "navbar.php"; 
+    }
+    ?>
+    <main>
+        <section>
+            <div class="condiction">
+                <h1 class="FROM-TITLE">شروط التسجيل موسم 2025/2026</h1>
+                <h2>الوثائق المطلوبة:</h2>
+                <h2>1- التزام ولي الأمر (يتم سحبه من موقع الجمعية والمصادقة عليه بالجماعة، ضروري إذا كان المنخرط قاصراً)
+                </h2>
+                <h2>2- عقد الإزدياد</h2>
+                <h2>3- صورتان شمسيتان</h2>
+                <h2>4- ثمن الإنخراط (ثمن التأمين + ثمن بطاقة انخراط + قميص الخاص بالفريق)</h2>
+            </div>
+        </section>
+        <section>
+            <div class="formrejoint">
+                <h1 class="FROM-TITLE">التسجيل الأولي</h1>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                    <div class="main-user-info">
+                        <div class="user-input-box">
+                            <label for="PrénomAr">الإسم الشخصي</label>
+                            <input type="text" id="PrénomAr" maxlength="25" name="PrénomAr" placeholder="الإسم الشخصي"
+                                required />
+                            <p id="messagePrénomAr" class="error"></p>
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const PrénomAr = document.getElementById('PrénomAr');
+                                const messagePrénomAr = document.getElementById('messagePrénomAr');
+                                const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+
+                                PrénomAr.addEventListener('input', function() {
+                                    const value = this.value;
+                                    if (!arabicRegex.test(value) && value !== "") {
+                                        this.value = value.replace(/[^\u0600-\u06FF\s]/g, '');
+                                        messagePrénomAr.textContent = 'يُسمح فقط بالحروف العربية';
+                                        messagePrénomAr.className = 'error';
+                                    } else {
+                                        messagePrénomAr.textContent = '';
+                                    }
+                                });
+                                PrénomAr.addEventListener('blur', function() {
+                                    if (this.value.trim() === '') {
+                                        messagePrénomAr.textContent =
+                                            'الرجاء إدخال الإسم الشخصي بالعربية';
+                                        messagePrénomAr.className = 'error';
+                                    } else if (arabicRegex.test(this.value)) {
+                                        messagePrénomAr.textContent = 'النص المدخل صحيح ✔';
+                                        messagePrénomAr.className = 'success-msg';
+                                    } else if (this.value.trim() !== "") {
+                                        messagePrénomAr.textContent = 'يُسمح فقط بالحروف العربية';
+                                        messagePrénomAr.className = 'error';
+                                    }
+                                });
+                            });
+                            </script>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="NomAr">الإسم العائلي</label>
+                            <input type="text" id="NomAr" maxlength="25" name="NomAr" placeholder="الإسم العائلي"
+                                required />
+                            <p id="messageNomAr" class="error"></p>
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const NomAr = document.getElementById('NomAr');
+                                const messageNomAr = document.getElementById('messageNomAr');
+                                const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+                                NomAr.addEventListener('input', function() {
+                                    const value = this.value;
+                                    if (!arabicRegex.test(value) && value !== "") {
+                                        this.value = value.replace(/[^\u0600-\u06FF\s]/g, '');
+                                        messageNomAr.textContent =
+                                        'يُسمح فقط بالحروف العربية والفراغات';
+                                        messageNomAr.className = 'error';
+                                    } else {
+                                        messageNomAr.textContent = '';
+                                    }
+                                });
+                                NomAr.addEventListener('blur', function() {
+                                    if (this.value.trim() === '') {
+                                        messageNomAr.textContent =
+                                        'الرجاء إدخال الإسم العائلي بالعربية';
+                                        messageNomAr.className = 'error';
+                                    } else if (arabicRegex.test(this.value)) {
+                                        messageNomAr.textContent = 'النص المدخل صحيح ✔';
+                                        messageNomAr.className = 'success-msg';
+                                    } else if (this.value.trim() !== "") {
+                                        messageNomAr.textContent =
+                                        'يُسمح فقط بالحروف العربية والفراغات';
+                                        messageNomAr.className = 'error';
+                                    }
+                                });
+                            });
+                            </script>
+                        </div>
+                        <div class="user-input-box inputfr">
+                            <label for="PrénomFr">Prénom</label>
+                            <input type="text" maxlength="25" id="PrénomFr" name="PrénomFr" placeholder="Prénom"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-']+"
+                                title="French first name: letters, spaces, hyphens, apostrophes" required />
+                        </div>
+                        <div class="user-input-box inputfr">
+                            <label for="NomFr">Nom</label>
+                            <input type="text" id="NomFr" maxlength="25" name="NomFr" placeholder="Nom"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-']+"
+                                title="French last name: letters, spaces, hyphens, apostrophes" required />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="TELE">رقم الهاتف</label>
+                            <input type="tel" dir="ltr" maxlength="10" id="TELE" name="TELE"
+                                placeholder="0712345678/0612345678" required />
+                            <p id="errorMsgTELE" class="error"></p>
+                            <script>
+                            const TELE = document.getElementById('TELE');
+                            const errorMsgTELE = document.getElementById('errorMsgTELE');
+                            TELE.addEventListener('input', function(e) {
+                                this.value = this.value.replace(/[^0-9]/g, '');
+                                if (this.value.length > 10) {
+                                    this.value = this.value.slice(0, 10);
+                                }
+                                if (this.value.length === 10 && (this.value.startsWith('06') || this.value
+                                        .startsWith('07'))) {
+                                    errorMsgTELE.textContent = 'رقم الهاتف صحيح ✔';
+                                    errorMsgTELE.className = 'success-msg';
+                                } else if (this.value.length < 10 || (!this.value.startsWith('06') && !this
+                                        .value.startsWith('07'))) {
+                                    errorMsgTELE.textContent = '';
+                                    errorMsgTELE.className = 'error';
+                                }
+                            });
+                            TELE.addEventListener('blur', function() {
+                                if (this.value.trim() === '') {
+                                    errorMsgTELE.textContent = 'الرجاء إدخال رقم الهاتف';
+                                    errorMsgTELE.className = 'error';
+                                } else if (this.value.length !== 10) {
+                                    errorMsgTELE.textContent = 'رقم الهاتف يجب أن يتكون من 10 أرقام';
+                                    errorMsgTELE.className = 'error';
+                                } else if (!this.value.startsWith('06') && !this.value.startsWith('07')) {
+                                    errorMsgTELE.textContent = 'يجب أن يبدأ الرقم بـ 06 أو 07';
+                                    errorMsgTELE.className = 'error';
+                                } else {
+                                    errorMsgTELE.textContent = 'رقم الهاتف صحيح ✔';
+                                    errorMsgTELE.className = 'success-msg';
+                                }
+                            });
+                            TELE.addEventListener('keypress', function(e) {
+                                if (e.key < '0' || e.key > '9') {
+                                    e.preventDefault();
+                                }
+                            });
+                            </script>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="Email">البريد الإلكتروني</label>
+                            <input type="email" dir="ltr" id="Email" name="Email" placeholder="example@domain.com"
+                                required>
+                            <p id="errorMsgEmail" dir="ltr" class="error"></p>
+                            <script>
+                            const EmailInput = document.getElementById(
+                            'Email'); // Changed variable name to avoid conflict
+                            const errorMsgEmail = document.getElementById('errorMsgEmail');
+                            EmailInput.addEventListener('blur', function() {
+                                const email = this.value.trim();
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (email === '') {
+                                    errorMsgEmail.textContent = 'يجب إدخال بريد إلكتروني';
+                                    errorMsgEmail.className = 'error';
+                                } else if (!emailRegex.test(email)) {
+                                    errorMsgEmail.textContent =
+                                        'البريد الإلكتروني غير صالح (e.g., example@domain.com)';
+                                    errorMsgEmail.className = 'error';
+                                } else {
+                                    errorMsgEmail.textContent = 'البريد الإلكتروني صالح ✔';
+                                    errorMsgEmail.className = 'success';
+                                }
+                            });
+                            EmailInput.addEventListener('input', function() {
+                                if (errorMsgEmail.textContent !== 'البريد الإلكتروني صالح ✔') {
+                                    errorMsgEmail.textContent = '';
+                                    errorMsgEmail.className = 'error';
+                                }
+                            });
+                            </script>
+                        </div>
+                        <div class="user-input-box">
+                            <label for="Date">تاريخ الإزدياد</label>
+                            <input type="date" id="Date" name="Date" required max="<?php echo date('Y-m-d'); ?>" />
+                        </div>
+                        <div class="user-input-box">
+                            <label for="CNIE">رقم البطاقة الوطنية (للمنخرط)</label>
+                            <input type="text" dir="ltr" maxlength="8" id="CNIE" name="CNIE"
+                                pattern="[A-Za-z]{1,2}[0-9]{6,7}" placeholder="AB123456 أو A1234567" required />
+                            <p id="messageCNIE" class="error"></p>
+                            <script>
+                            const CNIE_Input = document.getElementById('CNIE');
+                            const messageCNIE = document.getElementById('messageCNIE');
+                            const cnieRegex = /^[A-Za-z]{1,2}[0-9]{6,7}$/;
+
+                            CNIE_Input.addEventListener('input', function() {
+                                this.value = this.value.toUpperCase(); // Convert to uppercase for consistency
+                                if (cnieRegex.test(this.value)) {
+                                    messageCNIE.textContent = 'صيغة رقم البطاقة صحيحة ✔';
+                                    messageCNIE.className = 'success-msg';
+                                } else if (this.value.trim() !== '') {
+                                    messageCNIE.textContent = 'صيغة غير صحيحة (مثال: AB123456)';
+                                    messageCNIE.className = 'error';
+                                } else {
+                                    messageCNIE.textContent = '';
+                                }
+                            });
+                            CNIE_Input.addEventListener('blur', function() {
+                                if (this.value.trim() === '') {
+                                    messageCNIE.textContent = 'الرجاء إدخال رقم البطاقة الوطنية';
+                                    messageCNIE.className = 'error';
+                                } else if (!cnieRegex.test(this.value)) {
+                                    messageCNIE.textContent = 'صيغة غير صحيحة (مثال: AB123456 أو A1234567)';
+                                    messageCNIE.className = 'error';
+                                } else {
+                                    messageCNIE.textContent = 'صيغة رقم البطاقة صحيحة ✔';
+                                    messageCNIE.className = 'success-msg';
+                                }
+                            });
+                            </script>
+                        </div>
+                    </div>
+                    <button name="submit" type="submit" class="entre">أدخل المعلومات</button>
+                </form>
+
+               
+            </div>
+        </section>
+    </main>
+
+    <div>
+      
+    </div>
+</body>
+
+</html>

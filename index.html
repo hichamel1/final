@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./accet/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>النصر الرياضي المرنيسي</title>
+    <style>
+    :root {
+        --primary-color: #1a237e;
+        --secondary-color: #283593;
+        --accent-color: #3949ab;
+        --light-color: #e8eaf6;
+        --dark-color: #0d47a1;
+        --text-color: #ffffff;
+        --text-secondary: #bbdefb;
+        --transition-speed: 0.3s;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Tajawal', sans-serif;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    /* قسم التحقق */
+    #Verification {
+        background: rgb(108 110 165 / 85%);
+        padding: 25px;
+        border-radius: 15px;
+        max-width: 95%;
+        margin: 20px auto;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        animation: fadeIn 0.4s ease-out;
+        display: none;
+    }
+
+    #Verification h1 {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .statutlegal {
+        display: flex;
+        justify-content: space-evenly;
+        gap: 15px;
+        margin: 20px 0;
+
+    }
+
+    .statutlegal button {
+        flex: 1;
+        padding: 15px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        color: var(--text-color);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .statutlegal button:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.15));
+        transform: translateY(-3px);
+        box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .statutlegal button i {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .error {
+        color: var(--text-secondary);
+        margin: 15px 0;
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    #showMore {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        margin: 15px 0;
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--text-secondary);
+        border-radius: 25px;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    #showMore:hover {
+        color: var(--text-color);
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    #showMore i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    #showMore:hover i {
+        transform: translateX(-3px);
+    }
+
+    .age-card {
+        margin-top: 20px;
+        padding: 20px 15px;
+        background: rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        animation: fadeIn 0.4s ease-out;
+        display: none;
+    }
+
+    .age-card h3 {
+        color: var(--text-color);
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: var(--text-color);
+        font-size: 1rem;
+        transition: all var(--transition-speed) ease;
+        text-align: center;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--text-secondary);
+        background-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 3px rgba(187, 222, 251, 0.3);
+    }
+
+    .age-card button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(to right, var(--accent-color), var(--dark-color));
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .age-card button:hover {
+        background: linear-gradient(to right, var(--dark-color), var(--accent-color));
+        transform: translateY(-2px);
+        box-shadow: 0 7px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* قسم البطل */
+    .hero {
+        background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+        color: white;
+        padding: 60px 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('./accet/pattern.png') repeat;
+        opacity: 0.1;
+        z-index: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        max-width: 800px;
+        margin: 0 auto 30px;
+    }
+
+    .action_btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 30px;
+        background: linear-gradient(to right, var(--accent-color), var(--dark-color));
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        gap: 8px;
+    }
+
+    .action_btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(to right, var(--dark-color), var(--accent-color));
+    }
+
+    /* قسم المحتوى */
+    .contenaire {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        padding: 40px 20px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+    }
+
+    .contenaire .card {
+        flex: 1;
+        text-align: right;
+    }
+
+    .contenaire .card h1 {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .contenaire .card h2 {
+        color: var(--secondary-color);
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .contenaire .card p {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .contenaire .image {
+        flex: 0 0 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contenaire .image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* قسم القصص */
+    .nacer-stories {
+        padding: 2rem 1rem;
+        background-color: rgb(236, 235, 235);
+        border-radius: 10px;
+        margin: 20px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #555;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .story-item {
+        background-color: #fff;
+        border-radius: 8px;
+        position: relative;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        text-decoration: none;
+        display: block;
+        color: #333;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .story-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .new-badge {
+        position: absolute;
+        top: 0.8rem;
+        left: 0.8rem;
+        background-color: #a50044;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.75rem;
+        border-radius: 4px;
+        font-weight: bold;
+        z-index: 2;
+    }
+
+    .story-image {
+        height: 180px;
+        overflow: hidden;
+    }
+
+    .story-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .story-item:hover .story-image img {
+        transform: scale(1.05);
+    }
+
+    .story-item h3 {
+        font-size: 1.1rem;
+        margin: 1rem 1rem 0.5rem;
+        line-height: 1.4;
+    }
+
+    .story-meta {
+        font-size: 0.875rem;
+        color: #666;
+        margin: 0 1rem 1rem;
+        line-height: 1.5;
+    }
+
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .hero {
+            padding: 40px 15px;
+        }
+
+        .hero h1 {
+            font-size: 1.7rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .contenaire {
+            flex-direction: column-reverse;
+            gap: 20px;
+            padding: 30px 15px;
+        }
+
+        .contenaire .image {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .contenaire .card h1 {
+            font-size: 1.6rem;
+        }
+
+        .contenaire .card h2 {
+            font-size: 1.2rem;
+        }
+
+        .stories-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .statutlegal {
+            flex-direction: row;
+        }
+
+        .statutlegal button {
+            padding: 18px;
+            font-size: 1.1rem;
+        }
+
+        .statutlegal button i {
+            font-size: 2rem;
+        }
+
+        .age-card {
+            padding: 25px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>مرحباً بكم في النصر الرياضي المرنيسي</h1>
+                <p>انضم إلى عائلتنا الرياضية واستفد من برامجنا التدريبية المتخصصة وشارك في البطولات المحلية والدولية</p>
+                <form class="admin-login-form" action="/REJOINT.html" method="POST">
+                    <button class="action_btn">
+                        <i class=" fas fa-user-plus"></i>
+                        سجل الآن
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <section class="contenaire">
+            <div class="card">
+                <h1>جمعية النصر الرياضي المرنيسي</h1>
+                <h2>من هي جمعية النصر الرياضي المرنيسي؟</h2>
+                <p>جمعية النصر الرياضي المرنيسي هي جمعية رياضية تأسست وفقًا للقوانين المغربية، وتهدف إلى تعزيز ممارسة
+                    رياضة كرة القدم والعدو الريفي لجميع الفئات. يقع مقر الجمعية في دار الشباب طهر السوق.
+                    <br> *الشعار والرمز:* شعار الجمعية يعكس تضاريس المنطقة من خلال رسم يضم أودية وجبال، مع ألوان الفريق
+                    الأزرق، الأبيض، والأسود.
+                </p>
+            </div>
+            <div class="image">
+                <img src="./accet/logo.png" alt="شعار النصر الرياضي المرنيسي">
+            </div>
+        </section>
+
+        <section class="nacer-stories">
+            <div class="container">
+                <div class="section-header">
+                    <h2>شاهد أيضاً</h2>
+                </div>
+
+                <div class="stories-grid">
+                    <a href="#" class="story-item">
+                        <span class="new-badge">جديد</span>
+                        <div class="story-image">
+                            <img src="./accet/logo.png" alt="إعادة مشاهدة المباراة">
+                        </div>
+                        <h3>إعادة مشاهدة المباراة | النصر الرياضي ضد </h3>
+                        <p class="story-meta">مباراة الدوري </p>
+                    </a>
+                    <a href="#" class="story-item">
+                        <span class="new-badge">جديد</span>
+                        <div class="story-image">
+                            <img src="./accet/mosaïque.png" alt="إعادة مشاهدة المباراة">
+                        </div>
+                        <h3>إعادة مشاهدة المباراة | النصر الرياضي ضد </h3>
+                        <p class="story-meta">مباراة الدوري </p>
+                    </a>
+                    <a href="/produit.html" class="story-item">
+                        <div class="story-image">
+                            <img src="./accet/produit.jpg" alt="تشكيلة الفريق">
+                        </div>
+                        <h3>حجز القميص الرسمي النصر الرياضي المرنيسي</h3>
+                        <p class="story-meta"> الدفع عند الاستلام: 70 درهم عند الحجز + 80 درهم عند التسليم
+                            مدة الحجز: 24 ساعة فقط للتأكيد </p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <!-- ========== JAVASCRIPT لتحميل الأجزاء ========== -->
+    <script>
+    // دالة لتحميل ملفات HTML وتنفيذ السكريبتات اللي فيهم
+    async function loadHTML(elementId, filePath) {
+        try {
+            const response = await fetch(filePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.text();
+
+            // نحط المحتوى في الحاوية
+            const container = document.getElementById(elementId);
+            container.innerHTML = data;
+
+            // ننفذ أي سكريبتات موجودة في المحتوى المحمّل
+            const scripts = container.querySelectorAll('script');
+            scripts.forEach(oldScript => {
+                const newScript = document.createElement('script');
+                // ننسخ كل الصفات من السكريبت القديم للجديد
+                Array.from(oldScript.attributes).forEach(attr => {
+                    newScript.setAttribute(attr.name, attr.value);
+                });
+                // ننسخ المحتوى
+                newScript.textContent = oldScript.textContent;
+                // نبدل القديم بالجديد باش يتنفذ
+                oldScript.parentNode.replaceChild(newScript, oldScript);
+            });
+
+            console.log(`✅ تم تحميل ${filePath} بنجاح`);
+        } catch (error) {
+            console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+            document.getElementById(elementId).innerHTML = `
+                <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                    ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                </div>
+            `;
+        }
+    }
+
+    // نحمّل Navbar و Footer ملّي الصفحة تستنى تشارجي
+    document.addEventListener('DOMContentLoaded', function() {
+        loadHTML('navbar-container', 'navbar.html');
+        loadHTML('footer-container', 'footer.html');
+    });
+    </script>
+
+</body>
+
+</html>

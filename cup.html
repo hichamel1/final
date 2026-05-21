@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دوريات جمعية النصر الرياضي المرنيسي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .filters {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .filter-btn {
+            background-color: #e0e0e0;
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .filter-btn:hover {
+            background-color: #c0c0c0;
+        }
+
+        .filter-btn.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .advanced-filters {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .advanced-filters h3 {
+            margin-top: 0;
+            color: #005a3a;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .tournaments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .tournament-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tournament-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tournament-card .tournament-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ffc107;
+            color: #333;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tournament-card img.tournament-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 15px;
+        }
+
+        .tournament-card h3 {
+            color: #005a3a;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .tournament-card p {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .tournament-card p strong {
+            color: #555;
+        }
+
+        .tournament-card .details {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .role-منظمة {
+            background-color: #28a745;
+        }
+
+        .role-مشاركة {
+            background-color: #17a2b8;
+        }
+
+        .role-مشاركة\.في\.التنظيم {
+            background-color: #ffc107;
+            color: #333;
+        }
+
+        .sport-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            background-color: #e9ecef;
+            color: #495057;
+            margin-left: 5px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 25px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #005a3a;
+        }
+
+        .modal-body img.modal-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .modal-body p,
+        .modal-body ul {
+            margin-bottom: 10px;
+        }
+
+        .modal-body ul {
+            padding-right: 20px;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .modal-stat {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .modal-stat .stat-value {
+            font-weight: bold;
+            color: #005a3a;
+            font-size: 1.2em;
+        }
+
+        .modal-stat .stat-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .tournaments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 90%;
+            }
+
+            .modal-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <div class="container">
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="منظمة">دوريات منظمة</button>
+                <button class="filter-btn" data-filter="مشاركة">دوريات مشارك فيها</button>
+                <button class="filter-btn" data-filter="مشاركة في التنظيم">مشاركة في التنظيم</button>
+            </div>
+
+            <div class="advanced-filters">
+                <h3><i class="fas fa-filter"></i> تصفية متقدم</h3>
+                <div class="filter-row" style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <div class="filter-group" style="flex: 1; min-width: 200px;">
+                        <label for="sport-filter">نوع الرياضة</label>
+                        <select id="sport-filter">
+                            <option value="all">الكل</option>
+                            <!-- الخيارات غادي تتحمّل بـ JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group" style="flex: 1; min-width: 200px;">
+                        <label for="year-filter">السنة</label>
+                        <select id="year-filter">
+                            <option value="all">الكل</option>
+                            <!-- الخيارات غادي تتحمّل بـ JavaScript -->
+                        </select>
+                    </div>
+                    <div class="filter-group" style="flex: 1; min-width: 200px;">
+                        <label for="level-filter">مستوى الدوري</label>
+                        <select id="level-filter">
+                            <option value="all">الكل</option>
+                            <!-- الخيارات غادي تتحمّل بـ JavaScript -->
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tournaments-grid" class="tournaments-grid">
+                <!-- Tournament cards will be displayed here by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <!-- The Modal -->
+    <div id="tournamentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalTournamentName"></h2>
+            </div>
+            <div class="modal-body">
+                <img id="modalTournamentImage" src="" alt="صورة الدوري" class="modal-image" style="display:none;">
+                <div class="modal-stats" id="modalTournamentStats">
+                    <!-- Tournament statistics -->
+                </div>
+                <p><strong>السنة:</strong> <span id="modalTournamentYear"></span></p>
+                <p><strong>الدور:</strong> <span id="modalTournamentRole"></span></p>
+                <p><strong>نوع الرياضة:</strong> <span id="modalTournamentSport"></span></p>
+                <p><strong>مستوى الدوري:</strong> <span id="modalTournamentLevel"></span></p>
+                <p><strong>الوصف:</strong> <span id="modalTournamentDescription"></span></p>
+
+                <div id="modalTournamentTeamsContainer" style="display:none;">
+                    <h4>الفرق المشاركة (في البطولة ككل):</h4>
+                    <div id="modalTournamentTeamsList"></div>
+                </div>
+
+                <div id="modalTournamentSponsorsContainer" style="display:none; margin-top: 15px;">
+                    <h4>الرعاة:</h4>
+                    <div id="modalTournamentSponsorsList"></div>
+                </div>
+
+                <div id="modalTournamentExtendedDetails">
+                    <!-- Extended details will be displayed here -->
+                </div>
+                <p id="modalTournamentResultContainer" style="display:none;"><strong>النتيجة/المركز:</strong> <span
+                        id="modalTournamentResult"></span></p>
+                <div id="modalTournamentGallery" style="display:none; margin-top:20px;">
+                    <h4>معرض الصور:</h4>
+                    <div class="gallery-grid"
+                        style="display:grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap:10px; margin-top:10px;">
+                        <!-- Gallery images will be filled by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ========== دالة تحميل ملفات HTML ==========
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const container = document.getElementById(elementId);
+                container.innerHTML = data;
+
+                // تنفيذ السكريبتات الموجودة في المحتوى المحمّل
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+
+                console.log(`✅ تم تحميل ${filePath} بنجاح`);
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+                document.getElementById(elementId).innerHTML = `
+                    <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                        ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                    </div>
+                `;
+            }
+        }
+
+        // ========== تحميل Navbar و Footer ==========
+        loadHTML('navbar-container', 'navbar.html');
+        loadHTML('footer-container', 'footer.html');
+
+        // ========== بيانات تجريبية للدوريات ==========
+        // (تقدر تبدّلها ببيانات حقيقية من API أو ملف JSON)
+        const tournamentsData = [{
+            id: 1,
+            name: 'دوري النصر الرمضاني',
+            year: 2024,
+            role: 'منظمة',
+            sport: 'كرة القدم',
+            level: 'محلي',
+            description: 'دوري رمضاني سنوي ينظمه النادي بمشاركة فرق من المنطقة.',
+            image: './assets/tournament1.jpg',
+            teams: ['فريق النصر أ', 'فريق النصر ب', 'فريق الحي', 'فريق الشباب'],
+            sponsors: ['متجر الرياضة', 'مقهى النجوم'],
+            result: 'البطل: فريق النصر أ',
+            stats: [
+                { label: 'الفرق المشاركة', value: '8' },
+                { label: 'المباريات', value: '16' },
+                { label: 'الأهداف', value: '54' }
+            ],
+            gallery: ['./assets/gallery1.jpg', './assets/gallery2.jpg']
+        }, {
+            id: 2,
+            name: 'بطولة العدو الريفي',
+            year: 2023,
+            role: 'مشاركة',
+            sport: 'العدو الريفي',
+            level: 'جهوي',
+            description: 'مشاركة في البطولة الجهوية للعدو الريفي.',
+            image: './assets/tournament2.jpg',
+            teams: [],
+            sponsors: [],
+            result: 'المركز الثالث',
+            stats: [
+                { label: 'المشاركون', value: '45' },
+                { label: 'المسافة', value: '10 كم' }
+            ],
+            gallery: []
+        }, {
+            id: 3,
+            name: 'دوري المدارس',
+            year: 2024,
+            role: 'مشاركة في التنظيم',
+            sport: 'كرة القدم',
+            level: 'محلي',
+            description: 'تنظيم مشترك مع مؤسسات تعليمية لدوري المدارس.',
+            image: '',
+            teams: ['مدرسة الأمير', 'مدرسة النهضة', 'مدرسة السلام'],
+            sponsors: ['مجلس المدينة'],
+            result: '',
+            stats: [
+                { label: 'المدارس', value: '6' },
+                { label: 'التلاميذ', value: '120' }
+            ],
+            gallery: []
+        }];
+
+        // ========== بيانات الفلاتر ==========
+        const sportsData = ['كرة القدم', 'العدو الريفي', 'رياضات أخرى'];
+        const yearsData = [2024, 2023, 2022];
+        const levelsData = ['محلي', 'جهوي', 'وطني'];
+
+        // ========== تعبئة الفلاتر ==========
+        function populateFilters() {
+            const sportFilter = document.getElementById('sport-filter');
+            const yearFilter = document.getElementById('year-filter');
+            const levelFilter = document.getElementById('level-filter');
+
+            sportsData.forEach(sport => {
+                const option = document.createElement('option');
+                option.value = sport;
+                option.textContent = sport;
+                sportFilter.appendChild(option);
+            });
+
+            yearsData.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearFilter.appendChild(option);
+            });
+
+            levelsData.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level;
+                option.textContent = level;
+                levelFilter.appendChild(option);
+            });
+        }
+
+        // ========== عرض الدوريات ==========
+        function displayTournaments(filteredData) {
+            const grid = document.getElementById('tournaments-grid');
+            grid.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                grid.innerHTML = '<p style="text-align:center;grid-column:1/-1;padding:40px;">لا توجد دوريات متطابقة مع المعايير المحددة.</p>';
+                return;
+            }
+
+            filteredData.forEach(tournament => {
+                const card = document.createElement('div');
+                card.className = 'tournament-card';
+                card.setAttribute('data-id', tournament.id);
+                card.setAttribute('data-role', tournament.role);
+                card.setAttribute('data-sport', tournament.sport);
+                card.setAttribute('data-year', tournament.year);
+                card.setAttribute('data-level', tournament.level);
+                card.onclick = () => openModal(tournament);
+
+                const roleClass = tournament.role.replace(/\s+/g, '-').replace(/\./g, '\\.');
+
+                card.innerHTML = `
+                    ${tournament.image ? `<img src="${tournament.image}" alt="${tournament.name}" class="tournament-image" onerror="this.style.display='none'">` : ''}
+                    <span class="tournament-badge">${tournament.year}</span>
+                    <span class="role-badge role-${roleClass}">${tournament.role}</span>
+                    <h3>${tournament.name}</h3>
+                    <p><strong>نوع الرياضة:</strong> ${tournament.sport} <span class="sport-badge">${tournament.sport}</span></p>
+                    <p><strong>المستوى:</strong> ${tournament.level}</p>
+                    <div class="details">
+                        ${tournament.description ? tournament.description.substring(0, 100) + '...' : 'لا يوجد وصف مختصر'}
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // ========== فتح النافذة المنبثقة ==========
+        function openModal(tournament) {
+            const modal = document.getElementById('tournamentModal');
+
+            document.getElementById('modalTournamentName').textContent = tournament.name;
+            document.getElementById('modalTournamentYear').textContent = tournament.year;
+            document.getElementById('modalTournamentRole').textContent = tournament.role;
+            document.getElementById('modalTournamentSport').textContent = tournament.sport;
+            document.getElementById('modalTournamentLevel').textContent = tournament.level;
+            document.getElementById('modalTournamentDescription').textContent = tournament.description || 'لا يوجد وصف.';
+
+            // الصورة
+            const modalImage = document.getElementById('modalTournamentImage');
+            if (tournament.image) {
+                modalImage.src = tournament.image;
+                modalImage.style.display = 'block';
+            } else {
+                modalImage.style.display = 'none';
+            }
+
+            // الإحصائيات
+            const statsContainer = document.getElementById('modalTournamentStats');
+            statsContainer.innerHTML = '';
+            if (tournament.stats && tournament.stats.length > 0) {
+                tournament.stats.forEach(stat => {
+                    const statDiv = document.createElement('div');
+                    statDiv.className = 'modal-stat';
+                    statDiv.innerHTML = `
+                        <div class="stat-value">${stat.value}</div>
+                        <div class="stat-label">${stat.label}</div>
+                    `;
+                    statsContainer.appendChild(statDiv);
+                });
+            }
+
+            // الفرق المشاركة
+            const teamsContainer = document.getElementById('modalTournamentTeamsContainer');
+            const teamsList = document.getElementById('modalTournamentTeamsList');
+            if (tournament.teams && tournament.teams.length > 0) {
+                teamsContainer.style.display = 'block';
+                teamsList.innerHTML = '<ul>' + tournament.teams.map(team => `<li>${team}</li>`).join('') + '</ul>';
+            } else {
+                teamsContainer.style.display = 'none';
+            }
+
+            // الرعاة
+            const sponsorsContainer = document.getElementById('modalTournamentSponsorsContainer');
+            const sponsorsList = document.getElementById('modalTournamentSponsorsList');
+            if (tournament.sponsors && tournament.sponsors.length > 0) {
+                sponsorsContainer.style.display = 'block';
+                sponsorsList.innerHTML = '<ul>' + tournament.sponsors.map(sponsor => `<li>${sponsor}</li>`).join('') + '</ul>';
+            } else {
+                sponsorsContainer.style.display = 'none';
+            }
+
+            // النتيجة
+            const resultContainer = document.getElementById('modalTournamentResultContainer');
+            if (tournament.result) {
+                resultContainer.style.display = 'block';
+                document.getElementById('modalTournamentResult').textContent = tournament.result;
+            } else {
+                resultContainer.style.display = 'none';
+            }
+
+            // معرض الصور
+            const galleryContainer = document.getElementById('modalTournamentGallery');
+            const galleryGrid = galleryContainer.querySelector('.gallery-grid');
+            if (tournament.gallery && tournament.gallery.length > 0) {
+                galleryContainer.style.display = 'block';
+                galleryGrid.innerHTML = tournament.gallery.map(img =>
+                    `<img src="${img}" alt="صورة من المعرض" style="width:100%;height:80px;object-fit:cover;border-radius:4px;cursor:pointer;" onerror="this.style.display='none'">`
+                ).join('');
+            } else {
+                galleryContainer.style.display = 'none';
+            }
+
+            modal.style.display = 'block';
+        }
+
+        // ========== إغلاق النافذة المنبثقة ==========
+        function closeModal() {
+            document.getElementById('tournamentModal').style.display = 'none';
+        }
+
+        // ========== نظام التصفية ==========
+        let currentFilter = 'all';
+
+        function filterTournaments() {
+            const sportFilter = document.getElementById('sport-filter').value;
+            const yearFilter = document.getElementById('year-filter').value;
+            const levelFilter = document.getElementById('level-filter').value;
+
+            let filtered = tournamentsData;
+
+            // تصفية حسب الدور (الأزرار)
+            if (currentFilter !== 'all') {
+                filtered = filtered.filter(t => t.role === currentFilter);
+            }
+
+            // تصفية متقدمة
+            if (sportFilter !== 'all') {
+                filtered = filtered.filter(t => t.sport === sportFilter);
+            }
+            if (yearFilter !== 'all') {
+                filtered = filtered.filter(t => t.year === parseInt(yearFilter));
+            }
+            if (levelFilter !== 'all') {
+                filtered = filtered.filter(t => t.level === levelFilter);
+            }
+
+            displayTournaments(filtered);
+        }
+
+        // ========== تهيئة الصفحة ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            populateFilters();
+            displayTournaments(tournamentsData);
+
+            // أزرار التصفية
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFilter = this.getAttribute('data-filter');
+                    filterTournaments();
+                });
+            });
+
+            // الفلاتر المتقدمة
+            document.getElementById('sport-filter').addEventListener('change', filterTournaments);
+            document.getElementById('year-filter').addEventListener('change', filterTournaments);
+            document.getElementById('level-filter').addEventListener('change', filterTournaments);
+
+            // إغلاق المودال
+            document.querySelector('.close-button').addEventListener('click', closeModal);
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('tournamentModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

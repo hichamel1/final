@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صحيفة الأخبار اليومية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --dark-gray: #555;
+            --primary-color: #0056b3;
+            --secondary-color: #003d7a;
+            --accent-color: #dc3545;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 1rem auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        .search-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--dark-gray);
+            cursor: pointer;
+        }
+
+        .filters-container {
+            background-color: var(--white);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .filters-container:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1rem;
+        }
+
+        .filter-btn {
+            background-color: var(--light-gray);
+            color: #555;
+            border: none;
+            padding: 0.7rem 1.3rem;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn i {
+            font-size: 0.9rem;
+        }
+
+        .filter-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: auto;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .filter-btn:hover::after {
+            width: 100%;
+            right: auto;
+            left: 0;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            box-shadow: 0 4px 8px rgba(0, 86, 179, 0.3);
+        }
+
+        .filter-btn.active::after {
+            width: 100%;
+            background-color: var(--white);
+            right: auto;
+            left: 0;
+        }
+
+        .filtering .news-item {
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .filtering .news-item.match {
+            opacity: 1;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-item {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-image-container {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .news-item:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .news-badge.buds {
+            background-color: #4CAF50;
+        }
+        .news-badge.cubs {
+            background-color: #FF9800;
+        }
+        .news-badge.juniors {
+            background-color: #2196F3;
+        }
+        .news-badge.seniors {
+            background-color: #F44336;
+        }
+        .news-badge.first-team {
+            background-color: #9C27B0;
+        }
+        .news-badge.women-team {
+            background-color: #E91E63;
+        }
+
+        .news-badge i {
+            margin-right: 0.3rem;
+        }
+
+        .news-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-category {
+            display: inline-block;
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
+            align-self: flex-start;
+            background-color: var(--primary-color);
+        }
+
+        .news-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #555;
+            transition: var(--transition);
+        }
+
+        .news-item:hover .news-title {
+            color: var(--primary-color);
+        }
+
+        .news-excerpt {
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-top: auto;
+        }
+
+        .news-date {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-date i {
+            margin-left: 0.3rem;
+        }
+
+        .news-priority {
+            width: 80px;
+            padding: 5px;
+            color: var(--light-gray);
+            border-radius: 20px;
+            border: 1px solid #5a6268;
+            background-color: var(--secondary-color);
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .news-priority.buds {
+            background-color: #4CAF50;
+            border-color: #388E3C;
+            color: white;
+        }
+        .news-priority.cubs {
+            background-color: #FF9800;
+            border-color: #F57C00;
+            color: white;
+        }
+        .news-priority.juniors {
+            background-color: #2196F3;
+            border-color: #1976D2;
+            color: white;
+        }
+        .news-priority.seniors {
+            background-color: #F44336;
+            border-color: #D32F2F;
+            color: white;
+        }
+        .news-priority.first-team {
+            background-color: #9C27B0;
+            border-color: #7B1FA2;
+            color: white;
+        }
+        .news-priority.women-team {
+            background-color: #E91E63;
+            border-color: #C2185B;
+            color: white;
+        }
+
+        /* Category Specific Colors */
+        .filter-btn[data-category="all"].active {
+            background-color: #607D8B;
+            color: var(--white);
+            box-shadow: 0 4px 8px rgba(96, 125, 139, 0.3);
+        }
+        .filter-btn[data-category="all"].active::after {
+            background-color: var(--white);
+        }
+        .filter-btn[data-category="all"]:hover::after {
+            background-color: #607D8B;
+        }
+
+        .news-category.category-sports,
+        .filter-btn[data-category="sports"].active {
+            background-color: #4CAF50;
+        }
+        .filter-btn[data-category="sports"].active {
+            color: white;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+        .filter-btn[data-category="sports"]:hover::after {
+            background-color: #4CAF50;
+        }
+        .filter-btn[data-category="sports"].active::after {
+            background-color: var(--white);
+        }
+
+        .news-category.category-cross-country,
+        .filter-btn[data-category="cross-country"].active {
+            background-color: #FF9800;
+        }
+        .filter-btn[data-category="cross-country"].active {
+            color: white;
+            box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+        }
+        .filter-btn[data-category="cross-country"]:hover::after {
+            background-color: #FF9800;
+        }
+        .filter-btn[data-category="cross-country"].active::after {
+            background-color: var(--white);
+        }
+
+        .news-category.category-leagues,
+        .filter-btn[data-category="leagues"].active {
+            background-color: #2196F3;
+        }
+        .filter-btn[data-category="leagues"].active {
+            color: white;
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+        }
+        .filter-btn[data-category="leagues"]:hover::after {
+            background-color: #2196F3;
+        }
+        .filter-btn[data-category="leagues"].active::after {
+            background-color: var(--white);
+        }
+
+        .news-category.category-basketball,
+        .filter-btn[data-category="basketball"].active {
+            background-color: #9C27B0;
+        }
+        .filter-btn[data-category="basketball"].active {
+            color: white;
+            box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3);
+        }
+        .filter-btn[data-category="basketball"]:hover::after {
+            background-color: #9C27B0;
+        }
+        .filter-btn[data-category="basketball"].active::after {
+            background-color: var(--white);
+        }
+
+        .news-category.category-ads,
+        .filter-btn[data-category="ads"].active {
+            background-color: #E91E63;
+        }
+        .filter-btn[data-category="ads"].active {
+            color: white;
+            box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+        }
+        .filter-btn[data-category="ads"]:hover::after {
+            background-color: #E91E63;
+        }
+        .filter-btn[data-category="ads"].active::after {
+            background-color: var(--white);
+        }
+
+        .news-category.category-default {
+            background-color: var(--dark-gray);
+            color: white;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            grid-column: 1 / -1;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .filters-container {
+                position: static;
+                padding: 1rem;
+            }
+            .filters {
+                gap: 0.5rem;
+            }
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <div class="header-content">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن أخبار...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+        <section id="news-list">
+            <div class="filters">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-layer-group"></i>
+                    <span>الكل</span>
+                </button>
+                <button class="filter-btn" data-category="sports">
+                    <i class="fas fa-futbol"></i>
+                    <span>كرة القدم</span>
+                </button>
+                <button class="filter-btn" data-category="cross-country">
+                    <i class="fas fa-running"></i>
+                    <span>العدو الريفي</span>
+                </button>
+                <button class="filter-btn" data-category="leagues">
+                    <i class="fas fa-trophy"></i>
+                    <span>الدوريات</span>
+                </button>
+                <button class="filter-btn" data-category="basketball">
+                    <i class="fas fa-basketball-ball"></i>
+                    <span>كرة السلة</span>
+                </button>
+                <button class="filter-btn" data-category="ads">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>إعلانات</span>
+                </button>
+            </div>
+
+            <div class="news-grid" id="news-container">
+                <!-- الأخبار غادي تتحمّل بـ JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ========== دالة تحميل ملفات HTML ==========
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const container = document.getElementById(elementId);
+                container.innerHTML = data;
+
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+
+                console.log(`✅ تم تحميل ${filePath} بنجاح`);
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+                document.getElementById(elementId).innerHTML = `
+                    <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                        ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                    </div>
+                `;
+            }
+        }
+
+        // ========== تحميل Navbar و Footer ==========
+        loadHTML('navbar-container', '../navbar.html');
+        loadHTML('footer-container', '../footer.html');
+
+        // ========== بيانات الأخبار التجريبية ==========
+        const newsData = [{
+            id: 1,
+            title: 'فوز كبير للنصر الرياضي في الدوري المحلي',
+            content: 'حقق نادي النصر الرياضي المرنيسي فوزاً كبيراً على منافسه في الدوري المحلي بنتيجة 3-0. قدم الفريق أداءً رائعاً طوال المباراة وسيطر على مجريات اللعب بشكل كامل. سجل الأهداف كل من أحمد العلوي ومحمد الخالدي ويوسف البقالي. بهذا الفوز يرتقي النصر إلى المركز الثاني في ترتيب الدوري.',
+            image: './assets/news1.jpg',
+            category: 'كرة القدم',
+            date: '2024-03-15',
+            age_group: 'first-team',
+            categorySlug: 'sports'
+        }, {
+            id: 2,
+            title: 'انطلاق بطولة العدو الريفي لفئة الأشبال',
+            content: 'انطلقت صباح اليوم بطولة العدو الريفي لفئة الأشبال التي ينظمها نادي النصر الرياضي المرنيسي بمشاركة 45 عداءً من مختلف الأندية. جرت المنافسات في مسار جبلي بطول 5 كيلومترات. حصل النصر على المركزين الأول والثاني في الترتيب العام.',
+            image: './assets/news2.jpg',
+            category: 'العدو الريفي',
+            date: '2024-03-12',
+            age_group: 'cubs',
+            categorySlug: 'cross-country'
+        }, {
+            id: 3,
+            title: 'إعلان عن تسجيلات الموسم الجديد',
+            content: 'يفتح نادي النصر الرياضي المرنيسي باب التسجيل للموسم الرياضي الجديد ابتداءً من 1 أبريل. التسجيلات مفتوحة لجميع الفئات العمرية من البراعم إلى الكبار. الوثائق المطلوبة: شهادة طبية، صورتان شمسيتان، نسخة من عقد الازدياد.',
+            image: './assets/news3.jpg',
+            category: 'إعلانات',
+            date: '2024-03-10',
+            age_group: 'seniors',
+            categorySlug: 'ads'
+        }, {
+            id: 4,
+            title: 'دوري النصر الرمضاني يقترب من نهايته',
+            content: 'يقترب دوري النصر الرمضاني لكرة القدم من نهايته بعد منافسات قوية شهدتها المباريات. تأهل فريقا "النجوم" و"الأبطال" إلى المباراة النهائية التي ستقام يوم الجمعة المقبل. الدوري شهد مشاركة 12 فريقاً من مختلف الأحياء.',
+            image: './assets/news4.jpg',
+            category: 'الدوريات',
+            date: '2024-03-08',
+            age_group: 'juniors',
+            categorySlug: 'leagues'
+        }, {
+            id: 5,
+            title: 'فريق كرة السلة يحقق فوزه الثاني توالياً',
+            content: 'واصل فريق كرة السلة بنادي النصر الرياضي المرنيسي نتائجه الإيجابية بتحقيق الفوز الثاني على التوالي في البطولة الجهوية. جاء الفوز بنتيجة 78-65 أمام فريق الوداد. تألق اللاعب سفيان العماري وسجل 28 نقطة.',
+            image: '',
+            category: 'كرة السلة',
+            date: '2024-03-05',
+            age_group: 'women-team',
+            categorySlug: 'basketball'
+        }, {
+            id: 6,
+            title: 'البراعم يختتمون معسكراً تدريبياً ناجحاً',
+            content: 'اختتمت فئة البراعم بنادي النصر الرياضي معسكراً تدريبياً استمر ثلاثة أيام في إطار الاستعدادات للموسم الجديد. تضمن المعسكر تدريبات مكثفة وورشات تكوينية حول قيم الرياضة واللعب النظيف.',
+            image: './assets/news6.jpg',
+            category: 'كرة القدم',
+            date: '2024-03-01',
+            age_group: 'buds',
+            categorySlug: 'sports'
+        }];
+
+        // ========== دوال مساعدة ==========
+        function getPriorityName(priority) {
+            const priorities = {
+                'buds': 'البراعم',
+                'cubs': 'الأشبال',
+                'juniors': 'الصغار',
+                'seniors': 'الكبار',
+                'first-team': 'الفريق الأول',
+                'women-team': 'فريق النسوي'
+            };
+            return priorities[priority] || priority;
+        }
+
+        function getPriorityIcon(priority) {
+            const icons = {
+                'buds': 'fa-leaf',
+                'cubs': 'fa-paw',
+                'juniors': 'fa-male',
+                'seniors': 'fa-user',
+                'first-team': 'fa-trophy',
+                'women-team': 'fa-female'
+            };
+            return 'fas ' + (icons[priority] || 'fa-newspaper');
+        }
+
+        // ========== عرض الأخبار ==========
+        function displayNews(newsArray) {
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = '';
+
+            if (newsArray.length === 0) {
+                newsContainer.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-newspaper"></i>
+                        <h3>لا توجد أخبار متاحة حالياً</h3>
+                        <p>سيتم إضافة أخبار جديدة قريباً</p>
+                    </div>
+                `;
+                return;
+            }
+
+            newsArray.forEach(news => {
+                const imagePath = news.image || './assets/default-news.jpg';
+                const excerpt = news.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+
+                const newsItem = document.createElement('div');
+                newsItem.className = 'news-item';
+                newsItem.setAttribute('data-category-slug', news.categorySlug);
+                newsItem.setAttribute('data-priority', news.age_group);
+                newsItem.innerHTML = `
+                    <div class="news-image-container">
+                        <img class="news-image" src="${imagePath}" alt="${news.title}" onerror="this.src='./assets/default-news.jpg'">
+                        <span class="news-badge ${news.age_group}">
+                            <i class="${getPriorityIcon(news.age_group)}"></i>
+                            ${getPriorityName(news.age_group)}
+                        </span>
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category category-${news.categorySlug}">${news.category}</span>
+                        <h3 class="news-title">${news.title}</h3>
+                        <p class="news-excerpt">${excerpt}</p>
+                        <div class="news-meta">
+                            <span class="news-date">
+                                <i class="far fa-calendar-alt"></i>
+                                ${news.date}
+                            </span>
+                            <span class="news-priority ${news.age_group}">
+                                ${getPriorityName(news.age_group)}
+                            </span>
+                        </div>
+                        <a href="news_detail.html?id=${news.id}" class="read-more">اقرأ المزيد</a>
+                    </div>
+                `;
+                newsContainer.appendChild(newsItem);
+            });
+        }
+
+        // ========== متغيرات الحالة ==========
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        // ========== إعداد الفلاتر ==========
+        function setupFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    filterNews();
+                });
+            });
+        }
+
+        // ========== إعداد البحث ==========
+        function setupSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+
+            searchInput.addEventListener('input', function() {
+                currentSearch = this.value.toLowerCase().trim();
+                filterNews();
+            });
+
+            searchBtn.addEventListener('click', function() {
+                currentSearch = searchInput.value.toLowerCase().trim();
+                filterNews();
+            });
+        }
+
+        // ========== تصفية الأخبار ==========
+        function filterNews() {
+            const newsContainer = document.getElementById('news-container');
+            let filteredNews = newsData;
+
+            // تصفية حسب الفئة
+            if (currentCategory !== 'all') {
+                filteredNews = filteredNews.filter(news => news.categorySlug === currentCategory);
+            }
+
+            // تصفية حسب البحث
+            if (currentSearch !== '') {
+                filteredNews = filteredNews.filter(news =>
+                    news.title.toLowerCase().includes(currentSearch) ||
+                    news.content.toLowerCase().includes(currentSearch) ||
+                    news.category.includes(currentSearch)
+                );
+            }
+
+            displayNews(filteredNews);
+
+            // إظهار رسالة إذا لم توجد نتائج (في حالة البحث)
+            if (filteredNews.length === 0 && currentSearch !== '') {
+                const noResultsDiv = document.createElement('div');
+                noResultsDiv.className = 'no-results';
+                noResultsDiv.innerHTML = `
+                    <i class="fas fa-search"></i>
+                    <h3>لا توجد أخبار متطابقة مع بحثك</h3>
+                    <p>حاول تغيير فلتر البحث أو استخدام كلمات بحث مختلفة</p>
+                `;
+                const existingNoResults = newsContainer.querySelector('.no-results');
+                if (!existingNoResults) {
+                    newsContainer.appendChild(noResultsDiv);
+                }
+            }
+        }
+
+        // ========== تهيئة الصفحة ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            displayNews(newsData);
+            setupFilters();
+            setupSearch();
+        });
+    </script>
+
+</body>
+
+</html>

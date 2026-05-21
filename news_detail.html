@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الخبر</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --light-gray: #f5f5f5;
+            --white: #ffffff;
+            --dark-gray: #555;
+            --primary-color: #0056b3;
+            --secondary-color: #003d7a;
+            --accent-color: #dc3545;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Arial', sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-gray);
+            color: #555;
+            line-height: 1.8;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .news-detail-container {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-image-container {
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .detail-content {
+            padding: 2rem;
+        }
+
+        .detail-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-category {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .detail-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .detail-date,
+        .detail-author,
+        .detail-priority {
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-date i,
+        .detail-author i,
+        .detail-priority i {
+            margin-left: 0.5rem;
+        }
+
+        .detail-priority {
+            font-weight: bold;
+        }
+
+        .detail-priority.buds {
+            color: #4CAF50;
+        }
+        .detail-priority.cubs {
+            color: #FF9800;
+        }
+        .detail-priority.juniors {
+            color: #2196F3;
+        }
+        .detail-priority.seniors {
+            color: #F44336;
+        }
+        .detail-priority.first-team {
+            color: #9C27B0;
+        }
+        .detail-priority.women-team {
+            color: #E91E63;
+        }
+
+        .detail-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .detail-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-share-text {
+            font-weight: bold;
+            color: var(--dark-gray);
+            margin-left: 10px;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .share-btn.facebook {
+            background-color: #3b5998;
+        }
+        .share-btn.twitter {
+            background-color: #000000;
+        }
+        .share-btn.whatsapp {
+            background-color: #25d366;
+        }
+        .share-btn.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        .related-news {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .related-item {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .related-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .related-content {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .related-title {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .related-item:hover .related-title {
+            color: var(--primary-color);
+        }
+
+        .related-date {
+            font-size: 0.8rem;
+            color: var(--dark-gray);
+            margin-top: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        .related-item .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            align-self: flex-start;
+        }
+
+        .related-item .read-more:hover {
+            text-decoration: underline;
+            color: var(--secondary-color);
+        }
+
+        .back-btn-container {
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--dark-gray);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .back-btn i {
+            margin-left: 0.8rem;
+        }
+
+        .back-btn:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .no-results i.fa-newspaper {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .no-results h3 {
+            font-size: 1.7rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Loading state */
+        .loading-container {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .loading-container .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 86, 179, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .detail-image-container {
+                height: 300px;
+            }
+            .detail-title {
+                font-size: 1.6rem;
+            }
+            .detail-text {
+                font-size: 1rem;
+            }
+            .related-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            .detail-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .detail-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .detail-image-container {
+                height: 200px;
+            }
+            .detail-title {
+                font-size: 1.4rem;
+            }
+            .detail-content {
+                padding: 1.5rem;
+            }
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            main {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <!-- ========== LOADING STATE ========== -->
+        <div id="loading-container" class="loading-container">
+            <div class="spinner"></div>
+            <p>جاري تحميل الخبر...</p>
+        </div>
+
+        <!-- ========== CONTENT CONTAINER ========== -->
+        <div id="news-detail-content" style="display:none;"></div>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ========== دالة تحميل ملفات HTML ==========
+        async function loadHTML(elementId, filePath) {
+            try {
+                const response = await fetch(filePath);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const container = document.getElementById(elementId);
+                container.innerHTML = data;
+
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    newScript.textContent = oldScript.textContent;
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+
+                console.log(`✅ تم تحميل ${filePath} بنجاح`);
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+                document.getElementById(elementId).innerHTML = `
+                    <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                        ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                    </div>
+                `;
+            }
+        }
+
+        // ========== تحميل Navbar و Footer ==========
+        loadHTML('navbar-container', '../navbar.html');
+        loadHTML('footer-container', '../footer.html');
+
+        // ========== بيانات الأخبار التجريبية ==========
+        const allNewsData = [{
+            id: 1,
+            title: 'فوز كبير للنصر الرياضي في الدوري المحلي',
+            content: '<p>حقق نادي النصر الرياضي المرنيسي فوزاً كبيراً على منافسه في الدوري المحلي بنتيجة 3-0. قدم الفريق أداءً رائعاً طوال المباراة وسيطر على مجريات اللعب بشكل كامل.</p><p>سجل الأهداف كل من أحمد العلوي في الدقيقة 15، ومحمد الخالدي في الدقيقة 38، ويوسف البقالي في الدقيقة 72.</p><p>بهذا الفوز يرتقي النصر إلى المركز الثاني في ترتيب الدوري برصيد 28 نقطة، خلف المتصدر بفارق نقطتين فقط.</p>',
+            image: './assets/news1.jpg',
+            category: 'كرة القدم',
+            date: '2024-03-15',
+            age_group: 'first-team',
+            author: 'هيئة التحرير'
+        }, {
+            id: 2,
+            title: 'انطلاق بطولة العدو الريفي لفئة الأشبال',
+            content: '<p>انطلقت صباح اليوم بطولة العدو الريفي لفئة الأشبال التي ينظمها نادي النصر الرياضي المرنيسي بمشاركة 45 عداءً من مختلف الأندية.</p><p>جرت المنافسات في مسار جبلي بطول 5 كيلومترات. حصل النصر على المركزين الأول والثاني في الترتيب العام.</p>',
+            image: './assets/news2.jpg',
+            category: 'العدو الريفي',
+            date: '2024-03-12',
+            age_group: 'cubs',
+            author: 'الطاقم الرياضي'
+        }, {
+            id: 3,
+            title: 'إعلان عن تسجيلات الموسم الجديد',
+            content: '<p>يفتح نادي النصر الرياضي المرنيسي باب التسجيل للموسم الرياضي الجديد ابتداءً من 1 أبريل. التسجيلات مفتوحة لجميع الفئات العمرية من البراعم إلى الكبار.</p><p>الوثائق المطلوبة: شهادة طبية، صورتان شمسيتان، نسخة من عقد الازدياد.</p><p>للمزيد من المعلومات، يرجى زيارة مقر النادي أو الاتصال على الرقم 06XX-XXXXXX.</p>',
+            image: './assets/news3.jpg',
+            category: 'إعلانات',
+            date: '2024-03-10',
+            age_group: 'seniors',
+            author: 'إدارة النادي'
+        }, {
+            id: 4,
+            title: 'دوري النصر الرمضاني يقترب من نهايته',
+            content: '<p>يقترب دوري النصر الرمضاني لكرة القدم من نهايته بعد منافسات قوية شهدتها المباريات. تأهل فريقا "النجوم" و"الأبطال" إلى المباراة النهائية التي ستقام يوم الجمعة المقبل.</p><p>الدوري شهد مشاركة 12 فريقاً من مختلف الأحياء.</p>',
+            image: './assets/news4.jpg',
+            category: 'الدوريات',
+            date: '2024-03-08',
+            age_group: 'juniors',
+            author: 'اللجنة المنظمة'
+        }, {
+            id: 5,
+            title: 'فريق كرة السلة يحقق فوزه الثاني توالياً',
+            content: '<p>واصل فريق كرة السلة بنادي النصر الرياضي المرنيسي نتائجه الإيجابية بتحقيق الفوز الثاني على التوالي في البطولة الجهوية. جاء الفوز بنتيجة 78-65 أمام فريق الوداد.</p><p>تألق اللاعب سفيان العماري وسجل 28 نقطة.</p>',
+            image: './assets/news5.jpg',
+            category: 'كرة السلة',
+            date: '2024-03-05',
+            age_group: 'women-team',
+            author: 'هيئة التحرير'
+        }, {
+            id: 6,
+            title: 'البراعم يختتمون معسكراً تدريبياً ناجحاً',
+            content: '<p>اختتمت فئة البراعم بنادي النصر الرياضي معسكراً تدريبياً استمر ثلاثة أيام في إطار الاستعدادات للموسم الجديد.</p><p>تضمن المعسكر تدريبات مكثفة وورشات تكوينية حول قيم الرياضة واللعب النظيف.</p>',
+            image: './assets/news6.jpg',
+            category: 'كرة القدم',
+            date: '2024-03-01',
+            age_group: 'buds',
+            author: 'المدرب المسؤول'
+        }];
+
+        // ========== دوال مساعدة ==========
+        function getPriorityName(priority) {
+            const priorities = {
+                'buds': 'البراعم',
+                'cubs': 'الأشبال',
+                'juniors': 'الصغار',
+                'seniors': 'الكبار',
+                'first-team': 'الفريق الأول',
+                'women-team': 'فريق النسوي'
+            };
+            return priorities[priority] || priority;
+        }
+
+        function getPriorityIcon(priority) {
+            const icons = {
+                'buds': 'fa-leaf',
+                'cubs': 'fa-paw',
+                'juniors': 'fa-male',
+                'seniors': 'fa-user',
+                'first-team': 'fa-trophy',
+                'women-team': 'fa-female'
+            };
+            return 'fas ' + (icons[priority] || 'fa-newspaper');
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toISOString().split('T')[0]; // YYYY-MM-DD
+        }
+
+        function getCategorySlug(category) {
+            const map = {
+                'كرة القدم': 'sports',
+                'العدو الريفي': 'cross-country',
+                'الدوريات': 'leagues',
+                'كرة السلة': 'basketball',
+                'إعلانات': 'ads'
+            };
+            return map[category] || 'default';
+        }
+
+        // ========== قراءة ID الخبر من URL ==========
+        function getNewsIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        // ========== عرض تفاصيل الخبر ==========
+        function displayNewsDetail(news) {
+            const loadingContainer = document.getElementById('loading-container');
+            const contentContainer = document.getElementById('news-detail-content');
+
+            // خفي loading
+            loadingContainer.style.display = 'none';
+
+            const imagePath = news.image || './assets/default-news.jpg';
+            const encodedUrl = encodeURIComponent(window.location.href);
+            const encodedTitle = encodeURIComponent(news.title);
+
+            contentContainer.innerHTML = `
+                <div class="news-detail-container">
+                    <div class="detail-image-container">
+                        <img class="detail-image" src="${imagePath}" alt="${news.title}" onerror="this.src='./assets/default-news.jpg'">
+                    </div>
+                    <div class="detail-content">
+                        <div class="detail-header">
+                            <span class="detail-category">${news.category}</span>
+                            <h1 class="detail-title">${news.title}</h1>
+                            <div class="detail-meta">
+                                <span class="detail-date">
+                                    <i class="far fa-calendar-alt"></i>
+                                    ${formatDate(news.date)}
+                                </span>
+                                <span class="detail-author">
+                                    <i class="fas fa-user-edit"></i>
+                                    ${news.author || 'هيئة التحرير'}
+                                </span>
+                                <span class="detail-priority ${news.age_group}">
+                                    <i class="${getPriorityIcon(news.age_group)}"></i>
+                                    ${getPriorityName(news.age_group)}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="detail-text">
+                            ${news.content}
+                        </div>
+                        <div class="detail-footer">
+                            <div class="social-share">
+                                <span class="social-share-text">شارك عبر:</span>
+                                <a href="https://www.facebook.com/sharer/sharer.html?u=${encodedUrl}" target="_blank" class="share-btn facebook" title="مشاركة على فيسبوك">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}" target="_blank" class="share-btn twitter" title="مشاركة على إكس (تويتر)">
+                                    <i class="fab fa-x-twitter"></i>
+                                </a>
+                                <a href="https://api.whatsapp.com/send?text=${encodedTitle}%0A${encodedUrl}" target="_blank" class="share-btn whatsapp" title="مشاركة عبر واتساب">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://www.instagram.com/" target="_blank" class="share-btn instagram" title="تابعنا على إنستغرام (انسخ الرابط للمشاركة)">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="related-news-container"></div>
+                <div class="back-btn-container">
+                    <a href="news.html" class="back-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        <span>العودة إلى الأخبار</span>
+                    </a>
+                </div>
+            `;
+
+            contentContainer.style.display = 'block';
+
+            // عرض الأخبار ذات الصلة
+            displayRelatedNews(news);
+        }
+
+        // ========== عرض الأخبار ذات الصلة ==========
+        function displayRelatedNews(currentNews) {
+            const relatedNews = allNewsData.filter(news =>
+                news.category === currentNews.category && news.id !== currentNews.id
+            ).slice(0, 3);
+
+            const relatedContainer = document.getElementById('related-news-container');
+            if (!relatedContainer) return;
+
+            if (relatedNews.length > 0) {
+                relatedContainer.innerHTML = `
+                    <div class="related-news">
+                        <h3 class="section-title">أخبار ذات صلة</h3>
+                        <div class="related-grid">
+                            ${relatedNews.map(related => {
+                                const relatedImagePath = related.image || './assets/default-news.jpg';
+                                return `
+                                    <a href="news_detail.html?id=${related.id}" style="text-decoration:none; color:inherit; display: contents;">
+                                        <div class="related-item">
+                                            <img class="related-image" src="${relatedImagePath}" alt="${related.title}" onerror="this.src='./assets/default-news.jpg'">
+                                            <div class="related-content">
+                                                <h4 class="related-title">${related.title}</h4>
+                                                <p class="related-date">${formatDate(related.date)}</p>
+                                                <span class="read-more">اقرأ المزيد <i class="fas fa-arrow-left"></i></span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                relatedContainer.innerHTML = '';
+            }
+        }
+
+        // ========== عرض رسالة "الخبر غير موجود" ==========
+        function displayNewsNotFound() {
+            const loadingContainer = document.getElementById('loading-container');
+            const contentContainer = document.getElementById('news-detail-content');
+
+            loadingContainer.style.display = 'none';
+
+            contentContainer.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>الخبر غير موجود</h3>
+                    <p>عذراً، لم نتمكن من العثور على الخبر الذي تبحث عنه.</p>
+                    <div class="back-btn-container">
+                        <a href="news.html" class="back-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>العودة إلى الأخبار</span>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            contentContainer.style.display = 'block';
+        }
+
+        // ========== تهيئة الصفحة ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsId = getNewsIdFromURL();
+            const newsItem = allNewsData.find(news => news.id === newsId);
+
+            if (newsItem) {
+                // تحديث عنوان الصفحة
+                document.title = `تفاصيل الخبر - ${newsItem.title}`;
+                displayNewsDetail(newsItem);
+            } else if (newsId) {
+                // ID موجود ولكن الخبر غير موجود
+                displayNewsNotFound();
+            } else {
+                // مكينش ID فـ URL
+                displayNewsNotFound();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
