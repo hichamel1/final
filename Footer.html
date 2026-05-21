@@ -1,19 +1,67 @@
 <!-- footer.html -->
 <footer style="background-color: rgb(17, 80, 147); color: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: auto;">
     <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
-        <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
-            <a href="index.html" style="color: #f8f9fa; text-decoration: none;">الرئيسية</a>
-            <a href="structure.html" style="color: #f8f9fa; text-decoration: none;">عن النادي</a>
-            <a href="programs.html" style="color: #f8f9fa; text-decoration: none;">البرامج</a>
-            <a href="contact.html" style="color: #f8f9fa; text-decoration: none;">اتصل بنا</a>
-            <a href="privacy.html" style="color: #f8f9fa; text-decoration: none;">سياسة الخصوصية</a>
+        
+        <!-- الروابط -->
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+            <a href="index.html" style="color: #f8f9fa; text-decoration: none; transition: all 0.3s ease;">الرئيسية</a>
+            <a href="structure.html" style="color: #f8f9fa; text-decoration: none; transition: all 0.3s ease;">عن النادي</a>
+            <a href="programs.html" style="color: #f8f9fa; text-decoration: none; transition: all 0.3s ease;">البرامج</a>
+            <a href="contact.html" style="color: #f8f9fa; text-decoration: none; transition: all 0.3s ease;">اتصل بنا</a>
+            <a href="privacy.html" style="color: #f8f9fa; text-decoration: none; transition: all 0.3s ease;">سياسة الخصوصية</a>
         </div>
-        <div style="display: flex; justify-content: center; gap: 20px;">
-            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+        
+        <!-- أيقونات التواصل الاجتماعي -->
+        <div class="social-links" style="display: flex; justify-content: center; gap: 20px;">
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem; transition: all 0.3s ease;" aria-label="فيسبوك">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem; transition: all 0.3s ease;" aria-label="واتساب">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem; transition: all 0.3s ease;" aria-label="إنستغرام">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem; transition: all 0.3s ease;" aria-label="يوتيوب">
+                <i class="fab fa-youtube"></i>
+            </a>
         </div>
-        <p style="font-size: 0.9rem;">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
+        
+        <!-- حقوق النشر -->
+        <p style="font-size: 0.9rem; margin: 0; opacity: 0.8;">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
     </div>
 </footer>
+
+<!-- CSS إضافي للفوتر -->
+<style>
+    /* تأثيرات hover للروابط */
+    .footer-links a:hover {
+        text-decoration: underline !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* تأثيرات hover لأيقونات التواصل */
+    .social-links a:hover {
+        transform: translateY(-3px) scale(1.1) !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+        .footer-links {
+            gap: 15px !important;
+        }
+        .footer-links a {
+            font-size: 0.9rem !important;
+        }
+        .social-links {
+            gap: 15px !important;
+        }
+        .social-links a {
+            font-size: 1.3rem !important;
+        }
+        footer p {
+            font-size: 0.8rem !important;
+        }
+    }
+</style>
