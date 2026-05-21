@@ -395,10 +395,12 @@
     </div>
 
     <script>
-        // ========== دالة تحميل ملفات HTML ==========
+        // ========== دالة تحميل ملفات HTML مع منع الكاش ==========
         async function loadHTML(elementId, filePath) {
             try {
-                const response = await fetch(filePath);
+                // نضيف timestamp باش نمنع الكاش
+                const url = filePath + '?t=' + Date.now();
+                const response = await fetch(url);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
