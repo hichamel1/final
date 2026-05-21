@@ -1,176 +1,19 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="موقع النصر الرياضي المرنيسي - التسجيل في النادي الرياضي">
-    <link rel="icon" href="./accet/logo.png" type="image/png">
-
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </noscript>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kufam:wght@400;700&family=Tajawal:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <title>النصر الرياضي المرنيسي - التسجيل</title>
-
-    <style>
-    :root {
-        --primary-color: rgb(17, 80, 147);
-        --secondary-color: #eef5ff;
-        --accent-color: #007bff;
-        --light-color: #ffffff;
-        --dark-blue-hover: #004085;
-        --text-color: #333;
-        --text-color-light: #f8f9fa;
-        --text-secondary: #555;
-        --success-color: #28a745;
-        --success-hover-color: #218838;
-        --danger-color: #dc3545;
-        --transition-speed: 0.3s ease;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Tajawal", "Kufam", sans-serif;
-    }
-
-    /* الحل باش الفوتر يبقى تحت */
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-    }
-
-    main {
-        flex: 1;
-    }
-
-    /* الفوتر */
-    footer {
-        background-color: var(--primary-color);
-        color: var(--text-color-light);
-        padding: 30px 20px;
-        text-align: center;
-        margin-top: auto;
-    }
-
-    .footer-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-        margin-bottom: 20px;
-    }
-
-    .footer-links a {
-        color: var(--text-color-light);
-        text-decoration: none;
-        font-size: 1rem;
-        transition: all var(--transition-speed) ease;
-    }
-
-    .footer-links a:hover {
-        text-decoration: underline;
-        opacity: 0.8;
-    }
-
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .social-links a {
-        color: var(--text-color-light);
-        font-size: 1.5rem;
-        transition: all var(--transition-speed) ease;
-    }
-
-    .social-links a:hover {
-        transform: translateY(-3px) scale(1.1);
-        opacity: 0.8;
-    }
-
-    .copyright {
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes modalFadeIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -60%);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-    }
-    </style>
-</head>
-
-<body>
-
-    <!-- المحتوى الرئيسي ديال الصفحة -->
-    <main>
-        <!-- هنا تحط المحتوى ديال صفحتك -->
-        <h1>مرحباً بكم في موقع النصر الرياضي المرنيسي</h1>
-        <!-- باقي المحتوى... -->
-    </main>
-
-    <!-- ========== الفوتر ========== -->
-    <footer>
-        <div class="footer-links">
-            <a href="index.html">الرئيسية</a>
-            <a href="structure.html">عن النادي</a>
-            <a href="programs.html">البرامج</a>
-            <a href="contact.html">اتصل بنا</a>
-            <a href="privacy.html">سياسة الخصوصية</a>
+<!-- footer.html -->
+<footer style="background-color: rgb(17, 80, 147); color: #f8f9fa; padding: 30px 20px; text-align: center; margin-top: auto;">
+    <div style="max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+            <a href="index.html" style="color: #f8f9fa; text-decoration: none;">الرئيسية</a>
+            <a href="structure.html" style="color: #f8f9fa; text-decoration: none;">عن النادي</a>
+            <a href="programs.html" style="color: #f8f9fa; text-decoration: none;">البرامج</a>
+            <a href="contact.html" style="color: #f8f9fa; text-decoration: none;">اتصل بنا</a>
+            <a href="privacy.html" style="color: #f8f9fa; text-decoration: none;">سياسة الخصوصية</a>
         </div>
-
-        <div class="footer-content">
-            <div class="social-links">
-                <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" aria-label="إنستغرام"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="copyright">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+            <a href="#" style="color: #f8f9fa; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
         </div>
-    </footer>
-</body>
-
-</html>
+        <p style="font-size: 0.9rem;">© 2026 النصر الرياضي المرنيسي. جميع الحقوق محفوظة.</p>
+    </div>
+</footer>
