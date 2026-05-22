@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./accet/logo.png">
+    <title>البرامج - النصر الرياضي المرنيسي</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #64b5f6;
+            --text-color-dark: #333;
+            --text-color-light: #fff;
+            --bg-light: #fff;
+            --bg-gray: #f5f5f5;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-color-dark);
+            line-height: 1.6;
+            background-color: var(--bg-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .programs-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color-light);
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .programs-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .programs-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            border-right: 5px solid var(--accent-color);
+            padding-right: 20px;
+            text-align: right;
+        }
+
+        /* Programs Grid */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: var(--bg-light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .program-header i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .program-header h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .program-age {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .program-body {
+            padding: 25px;
+        }
+
+        .program-body p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .program-details {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .program-details li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .program-details li i {
+            color: var(--primary-color);
+            width: 25px;
+        }
+
+        .program-schedule {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        .program-schedule h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .program-schedule p {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .btn-register {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-register:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Info Section */
+        .info-section {
+            background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .info-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .btn-info:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-info i {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 15px;
+            }
+            .programs-hero {
+                padding: 40px 15px;
+            }
+            .programs-hero h1 {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 25px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-info {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="programs-hero">
+            <h1>برامجنا التدريبية</h1>
+            <p>نقدم برامج تدريبية متكاملة لجميع الفئات العمرية، تحت إشراف طاقم تدريبي مؤهل</p>
+        </div>
+
+        <!-- برامج كرة القدم -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-futbol"></i> برامج كرة القدم</h2>
+            <div class="programs-grid">
+                <!-- البراعم -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-child"></i>
+                        <h3>البراعم</h3>
+                        <span class="program-age">من 6 إلى 10 سنوات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>برنامج مخصص لتعليم أساسيات كرة القدم بطريقة ممتعة وآمنة، مع التركيز على تنمية المهارات الأساسية وحب اللعبة.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> يومان في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 90 دقيقة</li>
+                            <li><i class="fas fa-users"></i> عدد محدود: 20 لاعب كحد أقصى</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>الثلاثاء والخميس من الساعة 16:00 إلى 17:30</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الأشبال -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>الأشبال</h3>
+                        <span class="program-age">من 11 إلى 13 سنوات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>تطوير المهارات الفردية والجماعية، مع التركيز على فهم التكتيك واللعب الجماعي.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> 3 أيام في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 90 دقيقة</li>
+                            <li><i class="fas fa-users"></i> عدد محدود: 22 لاعب كحد أقصى</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>الإثنين، الأربعاء، الجمعة من الساعة 16:00 إلى 17:30</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الصغار -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-user"></i>
+                        <h3>الصغار</h3>
+                        <span class="program-age">من 14 إلى 16 سنوات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>برنامج متقدم يركز على تطوير المهارات التكتيكية والبدنية، والإعداد للمنافسات الرسمية.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> 4 أيام في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 120 دقيقة</li>
+                            <li><i class="fas fa-users"></i> عدد محدود: 22 لاعب كحد أقصى</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>الإثنين، الثلاثاء، الخميس، الجمعة من الساعة 16:00 إلى 18:00</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الكبار -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-user-astronaut"></i>
+                        <h3>الكبار</h3>
+                        <span class="program-age">من 17 إلى 25 سنوات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>برنامج احترافي للإعداد للمنافسات المحلية والوطنية، مع تدريبات مكثفة وتأطير منظم.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> 5 أيام في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 120 دقيقة</li>
+                            <li><i class="fas fa-users"></i> عدد محدود: 25 لاعب كحد أقصى</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>يومياً ما عدا السبت، من الساعة 17:00 إلى 19:00</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الفريق النسوي -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-female"></i>
+                        <h3>الفريق النسوي</h3>
+                        <span class="program-age">من 14 إلى 25 سنوات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>برنامج خاص لتطوير كرة القدم النسوية، مع تأطير نسوي متخصص لضمان بيئة مناسبة.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> 3 أيام في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 90 دقيقة</li>
+                            <li><i class="fas fa-users"></i> عدد محدود: 20 لاعبة كحد أقصى</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>الإثنين، الأربعاء، الجمعة من الساعة 16:00 إلى 17:30</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الفريق الأول -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-trophy"></i>
+                        <h3>الفريق الأول</h3>
+                        <span class="program-age">فريق المنافسات الرسمية</span>
+                    </div>
+                    <div class="program-body">
+                        <p>الفريق الرسمي للنادي الذي يمثل الجمعية في البطولات المحلية والجهوية والوطنية.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> تدريبات يومية مكثفة</li>
+                            <li><i class="fas fa-chart-line"></i> متابعة طبية وبدنية</li>
+                            <li><i class="fas fa-trophy"></i> المشاركة في البطولات الرسمية</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>يومياً (ما عدا يوم المباراة)، من الساعة 18:00 إلى 20:00</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- برنامج العدو الريفي -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-running"></i> برنامج العدو الريفي</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <div class="program-header">
+                        <i class="fas fa-running"></i>
+                        <h3>العدو الريفي</h3>
+                        <span class="program-age">جميع الفئات</span>
+                    </div>
+                    <div class="program-body">
+                        <p>برنامج متخصص في رياضة العدو الريفي، يهدف إلى اكتشاف وتطوير مواهب العدائين الشباب.</p>
+                        <ul class="program-details">
+                            <li><i class="fas fa-clock"></i> 3 أيام في الأسبوع</li>
+                            <li><i class="fas fa-hourglass-half"></i> مدة الحصة: 90 دقيقة</li>
+                            <li><i class="fas fa-mountain"></i> تدريبات على مسارات جبلية</li>
+                        </ul>
+                        <div class="program-schedule">
+                            <h4><i class="fas fa-calendar-alt"></i> أيام التدريب</h4>
+                            <p>الثلاثاء، الخميس، السبت من الساعة 15:00 إلى 16:30</p>
+                        </div>
+                        <a href="REJOINT.html" class="btn-register">سجل الآن <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- معلومات إضافية -->
+        <div class="info-section">
+            <h2><i class="fas fa-question-circle"></i> هل لديك استفسار؟</h2>
+            <p>لمزيد من المعلومات حول البرامج التدريبية أو للتسجيل، يرجى التواصل معنا</p>
+            <div class="info-buttons">
+                <a href="contact.html" class="btn-info"><i class="fas fa-envelope"></i> اتصل بنا</a>
+                <a href="REJOINT.html" class="btn-info"><i class="fas fa-user-plus"></i> التسجيل الآن</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <script>
+        // ========== دالة تحميل ملفات HTML ==========
+        async function loadHTML(elementId, filePath) {
+            try {
+                const url = filePath + '?t=' + Date.now();
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = data;
+                    const scripts = container.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => {
+                            newScript.setAttribute(attr.name, attr.value);
+                        });
+                        newScript.textContent = oldScript.textContent;
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+                }
+                console.log(`✅ تم تحميل ${filePath} بنجاح`);
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = `
+                        <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                            ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // ========== تحميل Navbar و Footer ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHTML('navbar-container', 'navbar.html');
+            loadHTML('footer-container', 'footer.html');
+        });
+    </script>
+
+</body>
+
+</html>

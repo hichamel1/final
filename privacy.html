@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./accet/logo.png">
+    <title>سياسة الخصوصية - النصر الرياضي المرنيسي</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #64b5f6;
+            --text-color-dark: #333;
+            --text-color-light: #fff;
+            --bg-light: #fff;
+            --bg-gray: #f5f5f5;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-color-dark);
+            line-height: 1.6;
+            background-color: var(--bg-gray);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .privacy-hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--text-color-light);
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .privacy-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .privacy-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            border-right: 5px solid var(--accent-color);
+            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            font-size: 1.6rem;
+            color: var(--accent-color);
+        }
+
+        .section-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 15px;
+        }
+
+        .section-content ul, .section-content ol {
+            margin: 15px 0;
+            padding-right: 30px;
+        }
+
+        .section-content li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: #e8eaf6;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-right: 4px solid var(--primary-color);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .last-update {
+            text-align: center;
+            padding: 20px;
+            background: #f0f2f5;
+            border-radius: 15px;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px 15px;
+            }
+            .privacy-hero {
+                padding: 40px 15px;
+            }
+            .privacy-hero h1 {
+                font-size: 1.8rem;
+            }
+            .section {
+                padding: 25px;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .section-title i {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR CONTAINER ========== -->
+    <div id="navbar-container"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <div class="privacy-hero">
+            <h1><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h1>
+            <p>نحن نلتزم بحماية خصوصية زوار موقعنا والمشاركين في أنشطتنا الرياضية</p>
+        </div>
+
+        <!-- مقدمة -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> مقدمة</h2>
+            <div class="section-content">
+                <p>تؤكد جمعية النصر الرياضي المرنيسي التزامها بحماية خصوصية المستخدمين والزوار. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية المعلومات الشخصية التي تقدمها عند استخدام موقعنا الإلكتروني أو عند التسجيل في أنشطة الجمعية.</p>
+                <p>نحن نحترم خصوصيتك ونلتزم بحماية بياناتك الشخصية وفقاً للقوانين واللوائح المعمول بها في المملكة المغربية.</p>
+            </div>
+        </div>
+
+        <!-- المعلومات التي نجمعها -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-database"></i> المعلومات التي نجمعها</h2>
+            <div class="section-content">
+                <p>قد نقوم بجمع الأنواع التالية من المعلومات:</p>
+                <ul>
+                    <li><strong>المعلومات الشخصية:</strong> الاسم الكامل، تاريخ الميلاد، العنوان، رقم الهاتف، البريد الإلكتروني، رقم البطاقة الوطنية.</li>
+                    <li><strong>المعلومات الرياضية:</strong> الفئة العمرية، مركز اللعب، الخبرات السابقة، الإنجازات الرياضية.</li>
+                    <li><strong>معلومات التسجيل:</strong> البيانات المقدمة عند التسجيل في برامج الجمعية أو المشاركة في الأنشطة الرياضية.</li>
+                    <li><strong>معلومات تقنية:</strong> عنوان IP، نوع المتصفح، صفحات الموقع التي تمت زيارتها، الوقت والتاريخ.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- كيفية استخدام المعلومات -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> كيفية استخدام المعلومات</h2>
+            <div class="section-content">
+                <p>نستخدم المعلومات التي نجمعها للأغراض التالية:</p>
+                <ul>
+                    <li>تسجيل الأعضاء الجدد في برامج الجمعية التدريبية.</li>
+                    <li>التواصل معك بشأن الأنشطة والبرامج والفعاليات الرياضية.</li>
+                    <li>تحسين خدماتنا وتطوير برامجنا التدريبية.</li>
+                    <li>إدارة المسابقات والبطولات التي تنظمها الجمعية.</li>
+                    <li>تلبية المتطلبات القانونية والإدارية المتعلقة بالأنشطة الرياضية.</li>
+                    <li>تحليل استخدام الموقع لتحسين تجربة المستخدم.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- حماية المعلومات -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-lock"></i> حماية المعلومات</h2>
+            <div class="section-content">
+                <p>نحن نتخذ التدابير الأمنية المناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التعديل أو الإفصاح أو الإتلاف. تشمل هذه التدابير:</p>
+                <ul>
+                    <li>استخدام تقنيات التشفير لحماية البيانات الحساسة.</li>
+                    <li>تقييد الوصول إلى المعلومات الشخصية للموظفين المصرح لهم فقط.</li>
+                    <li>مراجعة دورية لإجراءات الأمن لدينا.</li>
+                    <li>تخزين البيانات في بيئات آمنة.</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><i class="fas fa-shield-alt" style="margin-left: 10px;"></i> <strong>ملاحظة هامة:</strong> على الرغم من أننا نبذل قصارى جهدنا لحماية معلوماتك، إلا أنه لا يمكن ضمان أمان أي معلومات يتم إرسالها عبر الإنترنت بنسبة 100%.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- مشاركة المعلومات -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-share-alt"></i> مشاركة المعلومات</h2>
+            <div class="section-content">
+                <p>لا نقوم ببيع أو تأجير أو مشاركة معلوماتك الشخصية مع أطراف ثالثة لأغراض تسويقية. قد نشارك معلوماتك في الحالات التالية:</p>
+                <ul>
+                    <li><strong>بموافقتك:</strong> عندما تمنحنا الإذن لمشاركة معلوماتك.</li>
+                    <li><strong>الجهات الرياضية الرسمية:</strong> مع الجامعات والاتحادات الرياضية المعنية لأغراض التسجيل والمشاركة في البطولات.</li>
+                    <li><strong>المتطلبات القانونية:</strong> إذا طلبت منا جهة قانونية الإفصاح عن المعلومات وفقاً للقوانين المعمول بها.</li>
+                    <li><strong>حماية الحقوق:</strong> لحماية حقوق الجمعية أو سلامة أعضائها.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ملفات تعريف الارتباط (Cookies) -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-cookie-bite"></i> ملفات تعريف الارتباط (Cookies)</h2>
+            <div class="section-content">
+                <p>يستخدم موقعنا ملفات تعريف الارتباط لتحسين تجربة المستخدم. تساعدنا هذه الملفات في فهم كيفية استخدام الزوار لموقعنا، مما يمكننا من تحسين أداء الموقع وتقديم محتوى ذي صلة.</p>
+                <p>يمكنك تعيين متصفحك لرفض جميع ملفات تعريف الارتباط أو للإشارة عند إرسالها. ومع ذلك، قد لا تعمل بعض ميزات الموقع بشكل صحيح إذا قمت بتعطيل ملفات تعريف الارتباط.</p>
+            </div>
+        </div>
+
+        <!-- حقوق المستخدمين -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-user-check"></i> حقوق المستخدمين</h2>
+            <div class="section-content">
+                <p>لديك الحقوق التالية فيما يتعلق بمعلوماتك الشخصية:</p>
+                <ul>
+                    <li><strong>حق الوصول:</strong> طلب نسخة من المعلومات الشخصية التي نحتفظ بها عنك.</li>
+                    <li><strong>حق التصحيح:</strong> طلب تصحيح أي معلومات غير دقيقة أو غير كاملة.</li>
+                    <li><strong>حق الحذف:</strong> طلب حذف معلوماتك الشخصية في ظروف معينة.</li>
+                    <li><strong>حق الاعتراض:</strong> الاعتراض على معالجة معلوماتك الشخصية لأغراض معينة.</li>
+                </ul>
+                <p>لممارسة هذه الحقوق، يرجى الاتصال بنا باستخدام معلومات الاتصال أدناه.</p>
+            </div>
+        </div>
+
+        <!-- معلومات التخزين -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-clock"></i> الاحتفاظ بالمعلومات</h2>
+            <div class="section-content">
+                <p>نحتفظ بمعلوماتك الشخصية طالما كان ذلك ضرورياً لتحقيق الأغراض التي جمعت من أجلها، ولتلبية المتطلبات القانونية أو المحاسبية أو الإبلاغ. يتم تحديد فترة الاحتفاظ بناءً على نوع المعلومات والغرض من جمعها.</p>
+                <p>بمجرد عدم الحاجة إلى معلوماتك، سنقوم بحذفها بشكل آمن من أنظمتنا.</p>
+            </div>
+        </div>
+
+        <!-- روابط خارجية -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-external-link-alt"></i> روابط خارجية</h2>
+            <div class="section-content">
+                <p>قد يحتوي موقعنا على روابط لمواقع خارجية أخرى. نحن لسنا مسؤولين عن ممارسات الخصوصية أو محتوى هذه المواقع. ننصحك بقراءة سياسات الخصوصية الخاصة بتلك المواقع.</p>
+            </div>
+        </div>
+
+        <!-- تغييرات سياسة الخصوصية -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-edit"></i> تغييرات سياسة الخصوصية</h2>
+            <div class="section-content">
+                <p>نحتفظ بالحق في تعديل هذه السياسة في أي وقت. سيتم نشر أي تغييرات على هذه الصفحة مع تحديث تاريخ "آخر تحديث". ننصحك بمراجعة هذه الصفحة بشكل دوري للاطلاع على أي تغييرات.</p>
+            </div>
+        </div>
+
+        <!-- الاتصال بنا -->
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> الاتصال بنا</h2>
+            <div class="section-content">
+                <p>إذا كان لديك أي أسئلة أو استفسارات حول سياسة الخصوصية هذه، أو ترغب في ممارسة حقوقك المتعلقة بخصوصية بياناتك، يرجى الاتصال بنا:</p>
+                <div class="contact-info">
+                    <h3><i class="fas fa-map-marker-alt"></i> جمعية النصر الرياضي المرنيسي</h3>
+                    <p><i class="fas fa-location-dot"></i> دار الشباب طهر السوق، إقليم الحسيمة، المغرب</p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:contact@alnasr-mernissi.ma">contact@alnasr-mernissi.ma</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+212600000000">+212 6XX XXX XXX</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- آخر تحديث -->
+        <div class="last-update">
+            <p><i class="fas fa-calendar-alt"></i> آخر تحديث: 1 يناير 2026</p>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER CONTAINER ========== -->
+    <div id="footer-container"></div>
+
+    <script>
+        // ========== دالة تحميل ملفات HTML ==========
+        async function loadHTML(elementId, filePath) {
+            try {
+                const url = filePath + '?t=' + Date.now();
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.text();
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = data;
+                    const scripts = container.querySelectorAll('script');
+                    scripts.forEach(oldScript => {
+                        const newScript = document.createElement('script');
+                        Array.from(oldScript.attributes).forEach(attr => {
+                            newScript.setAttribute(attr.name, attr.value);
+                        });
+                        newScript.textContent = oldScript.textContent;
+                        oldScript.parentNode.replaceChild(newScript, oldScript);
+                    });
+                }
+                console.log(`✅ تم تحميل ${filePath} بنجاح`);
+            } catch (error) {
+                console.error(`❌ خطأ في تحميل ${filePath}:`, error);
+                const container = document.getElementById(elementId);
+                if (container) {
+                    container.innerHTML = `
+                        <div style="background:#ff4444;color:white;padding:15px;text-align:center;margin:10px 20px;border-radius:8px;">
+                            ⚠️ تعذر تحميل ${filePath}. تأكد من وجود الملف.
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // ========== تحميل Navbar و Footer ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHTML('navbar-container', 'navbar.html');
+            loadHTML('footer-container', 'footer.html');
+        });
+    </script>
+
+</body>
+
+</html>
